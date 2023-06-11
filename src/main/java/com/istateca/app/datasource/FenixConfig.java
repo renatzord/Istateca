@@ -20,7 +20,7 @@ import java.util.Map;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "entityManagerFactoryFenix",
         transactionManagerRef = "transactionManagerFenix",
-        basePackages = {"com.istateca.app.fenix.fdaos"}// La posición de la capa Dao/Repository
+        basePackages = {"com.istateca.app.fenix.daos"}// La posición de la capa Dao/Repository
 )
 public class FenixConfig {
 
@@ -37,7 +37,7 @@ public class FenixConfig {
         return builder
                 .dataSource(fenixDataSource)
                 .properties(vendorProperties)
-                .packages("com.api.ppp.fenix.fmodels")
+                .packages("com.istateca.app.fenix.models")
                 .persistenceUnit("fenixPersistenceUnit")
                 .build();
     }

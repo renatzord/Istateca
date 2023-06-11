@@ -20,8 +20,8 @@ import java.util.Map;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "entityManagerFactoryPracticas",
-        transactionManagerRef = "transactionManagerPracticas",
+        entityManagerFactoryRef = "entityManagerFactoryIstateca",
+        transactionManagerRef = "transactionManagerIstateca",
         basePackages = {"com.istateca.app.istateca.daos"} // La posición de la capa Dao/Repository
 )
 @EntityScan
@@ -35,24 +35,24 @@ public class IstatecaConfig {
     @Qualifier("vendorProperties")
     private Map<String, Object> vendorProperties;
 
-    @Bean(name = "entityManagerFactoryPracticas")
+    @Bean(name = "entityManagerFactoryIstateca")
     @Primary
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary(EntityManagerFactoryBuilder builder){
         return builder
                 .dataSource(istatecaDataSource)
                 .properties(vendorProperties)
-                .packages("com.api.ppp.back.models")// La ubicación de la clase de entidad
-                .persistenceUnit("practicasPersistenceUnit")
+                .packages("com.istateca.app.istateca.models")// La ubicación de la clase de entidad
+                .persistenceUnit("istatecaPersistenceUnit")
                 .build();
     }
 
-    @Bean(name = "entityManagerPracticas")
+    @Bean(name = "entityManagerIstateca")
     @Primary
     public EntityManager entityManager(EntityManagerFactoryBuilder builder){
         return entityManagerFactoryPrimary(builder).getObject().createEntityManager();
     }
 
-    @Bean(name = "transactionManagerPracticas")
+    @Bean(name = "transactionManagerIstateca")
     @Primary
     PlatformTransactionManager transactionManagerPrimary(EntityManagerFactoryBuilder builder){
         return new JpaTransactionManager(entityManagerFactoryPrimary(builder).getObject());

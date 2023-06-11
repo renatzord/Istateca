@@ -23,7 +23,7 @@ public class DataSourceConfig {
 
     @Bean(name = "istatecaDataSource")
     @Primary
-    @ConfigurationProperties("spring.datasource.practicas")
+    @ConfigurationProperties("spring.datasource.istateca")
     public DataSource firstDataSource(){
         return DataSourceBuilder.create().build();
     }
