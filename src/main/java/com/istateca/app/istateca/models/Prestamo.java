@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "prestamo")
-public class Prestamo implements Serializable {
+public class Prestamo implements Serializable,Actualizable<Prestamo> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -91,4 +91,38 @@ public class Prestamo implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "prestamo", fetch = FetchType.LAZY)
     private List<Tercero> prestamosTerceros;
+
+    @Override
+    public void actualizarDatos(Prestamo entity) {
+        if (entity.getFechaFin() != null) {
+            this.setFechaFin(entity.getFechaFin());
+        }
+        if (entity.getEstadoLibro() != null) {
+            this.setEstadoLibro(entity.getEstadoLibro());
+        }
+        if (entity.getEstadoPrestamo() != null) {
+            this.setEstadoPrestamo(entity.getEstadoPrestamo());
+        }
+        if (entity.getFechaEntrega() != null) {
+            this.setFechaEntrega(entity.getFechaEntrega());
+        }
+        if (entity.getDocumentoHabilitante() != null) {
+            this.setDocumentoHabilitante(entity.getDocumentoHabilitante());
+        }
+        if (entity.getFechaDevolucion() != null) {
+            this.setFechaDevolucion(entity.getFechaDevolucion());
+        }
+        if (entity.getFechaMaxima() != null) {
+            this.setFechaMaxima(entity.getFechaMaxima());
+        }
+        if (entity.getActivo() != null) {
+            this.setActivo(entity.getActivo());
+        }
+        if (entity.getEscaneoMatriz() != null) {
+            this.setEscaneoMatriz(entity.getEscaneoMatriz());
+        }
+        if (entity.getTipoPrestamo() != null) {
+            this.setTipoPrestamo(entity.getTipoPrestamo());
+        }
+    }
 }

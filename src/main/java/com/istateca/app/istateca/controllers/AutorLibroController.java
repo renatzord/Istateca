@@ -4,8 +4,11 @@ import com.istateca.app.istateca.models.AutorLibro;
 import com.istateca.app.istateca.services.AutorLibroService;
 import com.istateca.app.istateca.services.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/autorlibro")
@@ -13,9 +16,10 @@ public class AutorLibroController extends BaseController<AutorLibro> {
 
     /*
     controladores basicos estan en controlador general
-    crear: /autorlibro/crear -> pasa requestbody
+    crear: /autorlibro/crear -> pasar requestbody
     listar: /autorlibro/listar
-    buscar: /autorlibro/buscarID -> pasa PathVariable("id")
+    buscar: /autorlibro/buscar/{id} -> pasar PathVariable("id")
+    editar: /autorlibro/editar/{id} -> pasar requestbody
     */
 
     @Autowired

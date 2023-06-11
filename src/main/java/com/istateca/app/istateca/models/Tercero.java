@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Entity
 @Data
 @Table(name = "tercero")
-public class Tercero implements Serializable {
+public class Tercero implements Serializable,Actualizable<Tercero> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,5 +40,21 @@ public class Tercero implements Serializable {
     @ManyToOne
     @JoinColumn(name = "pre_id", referencedColumnName = "pre_id")
     private Prestamo prestamo;
+
+    @Override
+    public void actualizarDatos(Tercero entity) {
+        if (entity.getCedula() != null) {
+            this.setCedula(entity.getCedula());
+        }
+        if (entity.getCorreo() != null) {
+            this.setCorreo(entity.getCorreo());
+        }
+        if (entity.getNombre() != null) {
+            this.setNombre(entity.getNombre());
+        }
+        if (entity.getTelefono() != null) {
+            this.setTelefono(entity.getTelefono());
+        }
+    }
 
 }

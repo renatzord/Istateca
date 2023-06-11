@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "carrera")
-public class Carrera implements Serializable {
+public class Carrera implements Serializable,Actualizable<Carrera> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,4 +31,17 @@ public class Carrera implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "carrera", fetch = FetchType.LAZY)
     private List<Prestamo> prestamos;
+
+    @Override
+    public void actualizarDatos(Carrera entity) {
+        if (entity.getIdFenix() != null) {
+            this.setIdFenix(entity.getIdFenix());
+        }
+        if (entity.getNombre() != null) {
+            this.setNombre(entity.getNombre());
+        }
+        if (entity.getActivo() != null) {
+            this.setActivo(entity.getActivo());
+        }
+    }
 }

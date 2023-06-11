@@ -5,10 +5,10 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-@Data
 @Entity
+@Data
 @Table(name = "autor_libro")
-public class AutorLibro implements Serializable {
+public class AutorLibro implements Serializable,Actualizable<AutorLibro> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +25,11 @@ public class AutorLibro implements Serializable {
     @JoinColumn(name = "ato_id", referencedColumnName = "ato_id")
     private Autor autor;
 
+    @Override
+    public void actualizarDatos(AutorLibro entity) {
+        if (entity.getLibro()!=null)
+        this.setLibro(entity.getLibro());
+        if (entity.getAutor()!=null)
+        this.setAutor(entity.getAutor());
+    }
 }

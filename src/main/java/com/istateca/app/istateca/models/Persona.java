@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "persona")
-public class Persona implements Serializable {
+public class Persona implements Serializable,Actualizable<Persona> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,4 +77,34 @@ public class Persona implements Serializable {
     @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
     private List<Libro> librosIngresados;
 
+    @Override
+    public void actualizarDatos(Persona entity) {
+        if (entity.getCedula() != null) {
+            this.setCedula(entity.getCedula());
+        }
+        if (entity.getCorreo() != null) {
+            this.setCorreo(entity.getCorreo());
+        }
+        if (entity.getNombres() != null) {
+            this.setNombres(entity.getNombres());
+        }
+        if (entity.getApellidos() != null) {
+            this.setApellidos(entity.getApellidos());
+        }
+        if (entity.getTipo() != null) {
+            this.setTipo(entity.getTipo());
+        }
+        if (entity.getCelular() != null) {
+            this.setCelular(entity.getCelular());
+        }
+        if (entity.getCalificacion() != null) {
+            this.setCalificacion(entity.getCalificacion());
+        }
+        if (entity.getActivo() != null) {
+            this.setActivo(entity.getActivo());
+        }
+        if (entity.getAuthorities() != null) {
+            this.setAuthorities(entity.getAuthorities());
+        }
+    }
 }

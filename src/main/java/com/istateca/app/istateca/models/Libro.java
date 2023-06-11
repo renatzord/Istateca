@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "libro")
-public class Libro implements Serializable {
+public class Libro implements Serializable,Actualizable<Libro> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -122,5 +122,83 @@ public class Libro implements Serializable {
     @OneToMany(mappedBy = "libro", fetch = FetchType.LAZY)
     private List<AutorLibro> autoresLibro;
 
+    @Override
+    public void actualizarDatos(Libro entity) {
+        if (entity.getCodigoDewey() != null) {
+            this.setCodigoDewey(entity.getCodigoDewey());
+        }
+        if (entity.getTitulo() != null) {
+            this.setTitulo(entity.getTitulo());
+        }
+        if (entity.getAdquisicion() != null) {
+            this.setAdquisicion(entity.getAdquisicion());
+        }
+        if (entity.getAnioPublicacion() != null) {
+            this.setAnioPublicacion(entity.getAnioPublicacion());
+        }
+        if (entity.getEditor() != null) {
+            this.setEditor(entity.getEditor());
+        }
+        if (entity.getCiudad() != null) {
+            this.setCiudad(entity.getCiudad());
+        }
+        if (entity.getNumPaginas() != null) {
+            this.setNumPaginas(entity.getNumPaginas());
+        }
+        if (entity.getArea() != null) {
+            this.setArea(entity.getArea());
+        }
+        if (entity.getConIsbn() != null) {
+            this.setConIsbn(entity.getConIsbn());
+        }
+        if (entity.getIdioma() != null) {
+            this.setIdioma(entity.getIdioma());
+        }
+        if (entity.getIndiceUno() != null) {
+            this.setIndiceUno(entity.getIndiceUno());
+        }
+        if (entity.getIndiceDos() != null) {
+            this.setIndiceDos(entity.getIndiceDos());
+        }
+        if (entity.getIndiceTres() != null) {
+            this.setIndiceTres(entity.getIndiceTres());
+        }
+        if (entity.getDescripcion() != null) {
+            this.setDescripcion(entity.getDescripcion());
+        }
+        if (entity.getDimenciones() != null) {
+            this.setDimenciones(entity.getDimenciones());
+        }
+        if (entity.getEstadoLibro() != null) {
+            this.setEstadoLibro(entity.getEstadoLibro());
+        }
+        if (entity.getNombreDonante() != null) {
+            this.setNombreDonante(entity.getNombreDonante());
+        }
+        if (entity.getActivo() != null) {
+            this.setActivo(entity.getActivo());
+        }
+        if (entity.getUrlImagen() != null) {
+            this.setUrlImagen(entity.getUrlImagen());
+        }
+        if (entity.getUrlActaDonacion() != null) {
+            this.setUrlActaDonacion(entity.getUrlActaDonacion());
+        }
+        if (entity.getUrlDigital() != null) {
+            this.setUrlDigital(entity.getUrlDigital());
+        }
+        if (entity.getFechaCreacion() != null) {
+            this.setFechaCreacion(entity.getFechaCreacion());
+        }
+        if (entity.getDisponibilidad() != null) {
+            this.setDisponibilidad(entity.getDisponibilidad());
+        }
+        if (entity.getTipo() != null) {
+            this.setTipo(entity.getTipo());
+        }
+        if (entity.getPersona() != null) {
+            this.setPersona(entity.getPersona());
+        }
+    }
 
 }

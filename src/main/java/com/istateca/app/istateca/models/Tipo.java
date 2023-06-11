@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "tipo")
-public class Tipo implements Serializable {
+public class Tipo implements Serializable,Actualizable<Tipo> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,5 +30,15 @@ public class Tipo implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "tipo", fetch = FetchType.LAZY)
     private List<Libro> libros;
+
+    @Override
+    public void actualizarDatos(Tipo entity) {
+        if (entity.getNombre() != null) {
+            this.setNombre(entity.getNombre());
+        }
+        if (entity.getActivo() != null) {
+            this.setActivo(entity.getActivo());
+        }
+    }
 
 }

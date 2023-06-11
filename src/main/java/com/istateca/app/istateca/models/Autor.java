@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "autor")
-public class Autor implements Serializable {
+public class Autor implements Serializable,Actualizable<Autor> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +28,9 @@ public class Autor implements Serializable {
     @OneToMany(mappedBy = "autor", fetch = FetchType.LAZY)
     private List<AutorLibro> autoresLibros;
 
+    @Override
+    public void actualizarDatos(Autor entity) {
+        if (entity.getNombre()!=null)
+        this.setNombre(entity.getNombre());
+    }
 }
