@@ -15,4 +15,9 @@ public class PersonaImpl extends BaseServiceImpl<Persona, Integer> implements Pe
     public PersonaImpl(BaseRepository<Persona, Integer> baseRepository) {
         super(baseRepository);
     }
+
+    @Override
+    public Persona personaxCedula(String cedula) {
+        return (Persona) repository.findByCedula(cedula).orElse(null);
+    }
 }

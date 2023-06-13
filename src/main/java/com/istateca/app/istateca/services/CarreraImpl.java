@@ -17,4 +17,8 @@ public class CarreraImpl extends BaseServiceImpl<Carrera, Integer> implements Ca
         super(baseRepository);
     }
 
+    @Override
+    public boolean findByIdFenix(Integer idCarrera) {
+        return (repository.findByIdFenix(idCarrera).orElse(null)==null);
+    }
 }

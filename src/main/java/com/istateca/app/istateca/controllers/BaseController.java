@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,13 +43,14 @@ public abstract class BaseController<T extends Actualizable<T>> {
         }
     }
     @GetMapping("/listar")
-    public ResponseEntity<List<T>> listar() {
+    public ResponseEntity<List<?>> listar() {
         try {
-            List<T> entities = getService().findAll();
+            List<?> entities = getService().findAll();
             return ResponseEntity.ok().body(entities);
         } catch (Exception e) {
-            String errorMessage = "Error al obtener la lista de entidades: " + e.getMessage();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            List<String> errorMessage = new ArrayList<>();
+            errorMessage.add("Error al obtener la lista de entidades: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
         }
     }
 
