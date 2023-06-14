@@ -21,7 +21,7 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
     private Integer id;
 
     @Column(name = "pre_fecha_solicitud")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fechaFin;
 
@@ -34,7 +34,7 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
     private Integer estadoPrestamo;
 
     @Column(name = "pre_fecha_entrega")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fechaEntrega;
 
@@ -42,7 +42,7 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
     private Integer documentoHabilitante;
 
     @Column(name = "pre_fecha_devolucion")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fechaDevolucion;
 

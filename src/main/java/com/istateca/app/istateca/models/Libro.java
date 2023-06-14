@@ -9,6 +9,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -95,9 +96,9 @@ public class Libro implements Serializable,Actualizable<Libro> {
     private String urlDigital;
 
     @Column(name = "lib_fecha_creacion")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private Timestamp fechaCreacion;
+    private Date fechaCreacion;
 
     @Column(name = "lib_disponibilidad")
     private Boolean disponibilidad;
