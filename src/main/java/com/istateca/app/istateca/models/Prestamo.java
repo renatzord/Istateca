@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -25,11 +26,11 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fechaFin;
 
-    //@NotEmpty(message = "Campo estado libro obligatorio.")
+    @NotNull(message = "Campo estado libro obligatorio.")
     @Column(name = "pre_estado_libro")
     private Integer estadoLibro;
 
-    //@NotEmpty(message = "Campo estado del prestamo obligatorio.")
+    @NotNull(message = "Campo estado del prestamo obligatorio.")
     @Column(name = "pre_estado_prestamo")
     private Integer estadoPrestamo;
 
@@ -46,7 +47,7 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fechaDevolucion;
 
-    //@NotEmpty(message = "Se nesesita fecha maxima de devolucion.")
+    @NotNull(message = "Se nesesita fecha maxima de devolucion.")
     @Column(name = "pre_fecha_maxima")
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -58,7 +59,7 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
     @Column(name = "pre_escaneo_matriz")
     private String escaneoMatriz;
 
-    //@NotEmpty(message = "Requiere tipo.")
+    @NotNull(message = "Requiere tipo.")
     @Column(name = "pre_tipo_prestamo")
     private Integer tipoPrestamo;
 

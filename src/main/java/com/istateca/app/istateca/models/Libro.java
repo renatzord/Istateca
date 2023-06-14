@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
@@ -33,7 +34,7 @@ public class Libro implements Serializable,Actualizable<Libro> {
     @Column(name = "lib_adquisicion")
     private String adquisicion;
 
-    @NotEmpty(message = "Requiere año de publicacion.")
+    @NotNull(message = "Requiere año de publicacion.")
     @Column(name = "lib_anio_publicacion")
     private Integer anioPublicacion;
 
@@ -45,7 +46,7 @@ public class Libro implements Serializable,Actualizable<Libro> {
     @Column(name = "lib_ciudad")
     private String ciudad;
 
-    @NotEmpty(message = "Requiere numero de paginas.")
+    @NotNull(message = "Requiere numero de paginas.")
     @Column(name = "lib_num_paginas")
     private Integer numPaginas;
 
@@ -76,7 +77,7 @@ public class Libro implements Serializable,Actualizable<Libro> {
     @Column(name = "lib_dimenciones")
     private String dimenciones;
 
-    //@NotEmpty(message = "Requiere estado.")
+    @NotNull(message = "Requiere estado.")
     @Column(name = "lib_estado_libro")
     private Integer estadoLibro;
 
