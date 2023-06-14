@@ -29,7 +29,7 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
     @Column(name = "pre_estado_libro")
     private Integer estadoLibro;
 
-    @NotEmpty(message = "Campo estado del prestamo obligatorio.")
+    //@NotEmpty(message = "Campo estado del prestamo obligatorio.")
     @Column(name = "pre_estado_prestamo")
     private Integer estadoPrestamo;
 
@@ -46,7 +46,7 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fechaDevolucion;
 
-    @NotEmpty(message = "Se nesesita fecha maxima de devolucion.")
+    //@NotEmpty(message = "Se nesesita fecha maxima de devolucion.")
     @Column(name = "pre_fecha_maxima")
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
