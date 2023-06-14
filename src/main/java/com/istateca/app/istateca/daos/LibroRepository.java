@@ -10,4 +10,6 @@ public interface LibroRepository extends BaseRepository<Libro,Integer>{
 
     List<Libro> findAllByTituloContainingIgnoreCase(String titulo);
 
+    List<Libro> findAllByTipoId(Integer id);
+
 }

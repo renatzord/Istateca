@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface LibroService extends BaseService<Libro, Integer> {
 
-    public List<Libro> libroxTitulo(String titulo);
+    public List<Libro> librosxTitulo(String titulo);
+    public List<Libro> librosxTipo(Integer tipo);
 
 }

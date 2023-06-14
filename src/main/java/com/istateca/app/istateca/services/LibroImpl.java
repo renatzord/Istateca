@@ -19,7 +19,12 @@ public class LibroImpl extends BaseServiceImpl<Libro, Integer> implements LibroS
     }
 
     @Override
-    public List<Libro> libroxTitulo(String titulo) {
+    public List<Libro> librosxTitulo(String titulo) {
         return repository.findAllByTituloContainingIgnoreCase(titulo);
+    }
+
+    @Override
+    public List<Libro> librosxTipo(Integer tipo) {
+        return repository.findAllByTipoId(tipo);
     }
 }

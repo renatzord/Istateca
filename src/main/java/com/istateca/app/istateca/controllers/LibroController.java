@@ -33,6 +33,11 @@ public class LibroController extends BaseController<Libro> {
 
     @GetMapping("/listarlibrosxnombre/{titulo}")
     public List<Libro> librosxnombre(@PathVariable String titulo){
-        return service.libroxTitulo(titulo);
+        return service.librosxTitulo(titulo);
+    }
+
+    @GetMapping("/listarlibrosxtipo/{tipoid}")
+    public List<Libro> librosxnombre(@PathVariable Integer tipoid){
+        return service.librosxTipo(tipoid);
     }
 }
