@@ -6,6 +6,8 @@ import com.istateca.app.istateca.daos.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AutorImpl extends BaseServiceImpl<Autor, Integer> implements AutorService{
 
@@ -14,5 +16,11 @@ public class AutorImpl extends BaseServiceImpl<Autor, Integer> implements AutorS
 
     public AutorImpl(BaseRepository<Autor, Integer> baseRepository) {
         super(baseRepository);
+    }
+
+
+    @Override
+    public List<Autor> autoresxNombre(String nombre) {
+        return null;
     }
 }

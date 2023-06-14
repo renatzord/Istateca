@@ -6,6 +6,8 @@ import com.istateca.app.istateca.services.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/autor")
@@ -26,4 +28,10 @@ public class AutorController extends BaseController<Autor> {
     protected BaseService<Autor, Integer> getService() {
         return service;
     }
+
+    @GetMapping("/listarautoresxnombre/{nombre}")
+    public List<Autor> autor_libro(@PathVariable String nombre){
+        return service.autoresxNombre(nombre);
+    }
+
 }

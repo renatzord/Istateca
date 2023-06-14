@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -23,8 +22,8 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
 
     @Column(name = "pre_fecha_solicitud")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private Timestamp fechaFin;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date fechaFin;
 
     @NotEmpty(message = "Campo estado libro obligatorio.")
     @Column(name = "pre_estado_libro")
@@ -36,16 +35,16 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
 
     @Column(name = "pre_fecha_entrega")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private Timestamp fechaEntrega;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date fechaEntrega;
 
     @Column(name = "pre_documento_habilitante")
     private Integer documentoHabilitante;
 
     @Column(name = "pre_fecha_devolucion")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private Timestamp fechaDevolucion;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date fechaDevolucion;
 
     @NotEmpty(message = "Se nesesita fecha maxima de devolucion.")
     @Column(name = "pre_fecha_maxima")

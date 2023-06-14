@@ -6,6 +6,8 @@ import com.istateca.app.istateca.models.Libro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LibroImpl extends BaseServiceImpl<Libro, Integer> implements LibroService {
 
@@ -14,5 +16,10 @@ public class LibroImpl extends BaseServiceImpl<Libro, Integer> implements LibroS
 
     public LibroImpl(BaseRepository<Libro, Integer> baseRepository) {
         super(baseRepository);
+    }
+
+    @Override
+    public List<Libro> libroxTitulo(String titulo) {
+        return repository.findAllByTituloLike(titulo);
     }
 }
