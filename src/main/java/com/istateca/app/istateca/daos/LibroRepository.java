@@ -8,6 +8,6 @@ import java.util.List;
 @Repository
 public interface LibroRepository extends BaseRepository<Libro,Integer>{
 
-    List<Libro> findAllByTituloContaining(String titulo);
+    List<Libro> findAllByTituloContainingIgnoreCase(String titulo);
 
 }
