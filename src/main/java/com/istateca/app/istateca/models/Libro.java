@@ -76,7 +76,7 @@ public class Libro implements Serializable,Actualizable<Libro> {
     @Column(name = "lib_dimenciones")
     private String dimenciones;
 
-    @NotEmpty(message = "Requiere estado.")
+    //@NotEmpty(message = "Requiere estado.")
     @Column(name = "lib_estado_libro")
     private Integer estadoLibro;
 
@@ -97,7 +97,7 @@ public class Libro implements Serializable,Actualizable<Libro> {
 
     @Column(name = "lib_fecha_creacion")
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fechaCreacion;
 
     @Column(name = "lib_disponibilidad")

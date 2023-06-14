@@ -25,7 +25,7 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fechaFin;
 
-    @NotEmpty(message = "Campo estado libro obligatorio.")
+    //@NotEmpty(message = "Campo estado libro obligatorio.")
     @Column(name = "pre_estado_libro")
     private Integer estadoLibro;
 
@@ -58,7 +58,7 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
     @Column(name = "pre_escaneo_matriz")
     private String escaneoMatriz;
 
-    @NotEmpty(message = "Requiere tipo.")
+    //@NotEmpty(message = "Requiere tipo.")
     @Column(name = "pre_tipo_prestamo")
     private Integer tipoPrestamo;
 
