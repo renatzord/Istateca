@@ -7,4 +7,6 @@ public interface CarreraService extends BaseService<Carrera, Integer> {
 
     public boolean findByIdFenix(Integer idCarrera);
 
+    public Carrera carreraest(Integer idCarrera);
+
 }

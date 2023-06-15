@@ -30,6 +30,6 @@ public class LibroImpl extends BaseServiceImpl<Libro, Integer> implements LibroS
 
     @Override
     public List<Libro> librosxcoincidencias(String parametro) {
-        return repository.findByTituloContainingIgnoreCaseOrSubtituloContainingIgnoreCaseOrDescripcionContainingIgnoreCaseOrAreaContainingIgnoreCaseOrEtiquetasLibroEtiquetaNombreIgnoreCase(parametro,parametro,parametro,parametro,parametro);
+        return repository.findByTituloContainingIgnoreCaseOrSubtituloContainingIgnoreCaseOrDescripcionContainingIgnoreCaseOrAreaContainingIgnoreCaseOrEtiquetasLibroEtiquetaNombreContainingIgnoreCase(parametro,parametro,parametro,parametro,parametro);
     }
 }

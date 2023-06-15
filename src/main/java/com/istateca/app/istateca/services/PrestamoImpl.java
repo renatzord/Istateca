@@ -6,6 +6,8 @@ import com.istateca.app.istateca.models.Prestamo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PrestamoImpl extends BaseServiceImpl<Prestamo, Integer> implements PrestamoService {
 
@@ -14,5 +16,10 @@ public class PrestamoImpl extends BaseServiceImpl<Prestamo, Integer> implements 
 
     public PrestamoImpl(BaseRepository<Prestamo, Integer> baseRepository) {
         super(baseRepository);
+    }
+
+    @Override
+    public List<Prestamo> prestamoxestadoprestamo(Integer estado) {
+        return repository.findAllByEstadoPrestamo(estado);
     }
 }

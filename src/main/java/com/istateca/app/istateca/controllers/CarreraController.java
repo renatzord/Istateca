@@ -1,9 +1,13 @@
 package com.istateca.app.istateca.controllers;
 
+import com.istateca.app.fenix.fmodels.UsuarioFenix;
+import com.istateca.app.fenix.fservices.UsuarioFenixService;
 import com.istateca.app.istateca.models.Carrera;
 import com.istateca.app.istateca.services.BaseService;
 import com.istateca.app.istateca.services.CarreraService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,8 +26,17 @@ public class CarreraController extends BaseController<Carrera> {
     @Autowired
     private CarreraService service;
 
+    @Autowired
+    private UsuarioFenixService usuarioFenixService;
+
     @Override
     protected BaseService<Carrera, Integer> getService() {
         return service;
+    }
+
+    @GetMapping("/carreraest/{cedula}")
+    public Carrera carreraest(@PathVariable String cedula){
+        UsuarioFenix usuarioFenix=usuarioFenixService.findByCedula(cedula);
+        return service.carreraest(usuarioFenix.getCarreraid());
     }
 }

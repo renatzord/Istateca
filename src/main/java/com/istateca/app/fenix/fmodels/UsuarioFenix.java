@@ -29,4 +29,7 @@ public class UsuarioFenix implements Serializable {
 
     @Column(name = "tipo")
     private Integer tipo;
+
+    @Column(name = "carreraid")
+    private Integer carreraid;
 }

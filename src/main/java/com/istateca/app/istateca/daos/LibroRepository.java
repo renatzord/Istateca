@@ -21,6 +21,6 @@ public interface LibroRepository extends BaseRepository<Libro,Integer>{
     List<Libro> librosxcoincidencias(@Param("parametro") String parametro);
     */
 
-    List<Libro> findByTituloContainingIgnoreCaseOrSubtituloContainingIgnoreCaseOrDescripcionContainingIgnoreCaseOrAreaContainingIgnoreCaseOrEtiquetasLibroEtiquetaNombreIgnoreCase(String titulo, String subtitulo, String descripcion,String area, String nombre);
+    List<Libro> findByTituloContainingIgnoreCaseOrSubtituloContainingIgnoreCaseOrDescripcionContainingIgnoreCaseOrAreaContainingIgnoreCaseOrEtiquetasLibroEtiquetaNombreContainingIgnoreCase(String titulo, String subtitulo, String descripcion,String area, String nombre);
 
 }
