@@ -27,4 +27,9 @@ public class LibroImpl extends BaseServiceImpl<Libro, Integer> implements LibroS
     public List<Libro> librosxTipo(Integer tipo) {
         return repository.findAllByTipoId(tipo);
     }
+
+    @Override
+    public List<Libro> librosxcoincidencias(String parametro) {
+        return repository.findByTituloContainingIgnoreCaseOrSubtituloContainingIgnoreCaseOrDescripcionContainingIgnoreCaseOrAreaContainingIgnoreCaseOrEtiquetasLibroEtiquetaNombreIgnoreCase(parametro,parametro,parametro,parametro,parametro);
+    }
 }

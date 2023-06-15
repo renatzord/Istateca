@@ -6,9 +6,6 @@ import com.istateca.app.istateca.services.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/persona")
 public class PersonaController extends BaseController<Persona> {

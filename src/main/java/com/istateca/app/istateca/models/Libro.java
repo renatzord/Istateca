@@ -31,6 +31,9 @@ public class Libro implements Serializable,Actualizable<Libro> {
     @Column(name = "lib_titulo")
     private String titulo;
 
+    @Column(name = "lib_subtitulo")
+    private String subtitulo;
+
     @Column(name = "lib_adquisicion")
     private String adquisicion;
 
@@ -124,10 +127,17 @@ public class Libro implements Serializable,Actualizable<Libro> {
     @OneToMany(mappedBy = "libro", fetch = FetchType.LAZY)
     private List<AutorLibro> autoresLibro;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "libro", fetch = FetchType.LAZY)
+    private List<EtiquetaLibro> etiquetasLibro;
+
     @Override
     public void actualizarDatos(Libro entity) {
         if (entity.getCodigoDewey() != null) {
             this.setCodigoDewey(entity.getCodigoDewey());
+        }
+        if (entity.getSubtitulo() != null) {
+            this.setSubtitulo(entity.getSubtitulo());
         }
         if (entity.getTitulo() != null) {
             this.setTitulo(entity.getTitulo());
