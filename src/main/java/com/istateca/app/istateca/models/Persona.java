@@ -37,6 +37,10 @@ public class Persona implements Serializable,Actualizable<Persona> {
     @Column(name = "per_apellidos")
     private String apellidos;
 
+    //@NotEmpty(message = "Campo apellido obligatorio.")
+    @Column(name = "per_password")
+    private String password;
+
     @Column(name = "per_tipo")
     private Integer tipo;
 
@@ -105,6 +109,9 @@ public class Persona implements Serializable,Actualizable<Persona> {
         }
         if (entity.getAuthorities() != null) {
             this.setAuthorities(entity.getAuthorities());
+        }
+        if (entity.getPassword() != null) {
+            this.setPassword(entity.getPassword());
         }
     }
 }
