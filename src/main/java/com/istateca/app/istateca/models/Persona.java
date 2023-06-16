@@ -37,6 +37,10 @@ public class Persona implements Serializable,Actualizable<Persona> {
     @Column(name = "per_apellidos")
     private String apellidos;
 
+    @NotEmpty(message = "Direccion Obligatoria.")
+    @Column(name = "per_direccion")
+    private String direccion;
+
     //@NotEmpty(message = "Campo apellido obligatorio.")
     @Column(name = "per_password")
     private String password;

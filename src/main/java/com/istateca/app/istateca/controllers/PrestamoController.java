@@ -16,10 +16,10 @@ public class PrestamoController  extends BaseController<Prestamo> {
 
         /*
     controladores basicos estan en controlador general
-    crear: /autor/crear -> pasar requestbody
-    listar: /autor/listar
-    buscar: /autor/buscar/{id} -> pasar PathVariable("id")
-    editar: /autor/editar/{id} -> pasar requestbody
+    crear: /prestamo/crear -> pasar requestbody
+    listar: /prestamo/listar
+    buscar: /prestamo/buscar/{id} -> pasar PathVariable("id")
+    editar: /prestamo/editar/{id} -> pasar requestbody
     */
 
     @Autowired

@@ -32,4 +32,7 @@ public class UsuarioFenix implements Serializable {
 
     @Column(name = "carreraid")
     private Integer carreraid;
+
+    @Column(name = "direccion")
+    private String direccion;
 }
