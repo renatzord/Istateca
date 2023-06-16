@@ -124,5 +124,21 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
         if (entity.getTipoPrestamo() != null) {
             this.setTipoPrestamo(entity.getTipoPrestamo());
         }
+        if (entity.getLibro() != null) {
+            this.setLibro(entity.getLibro());
+        }
+        if (entity.getCarrera() != null) {
+            this.setCarrera(entity.getCarrera());
+        }
+        if (entity.getIdSolicitante() != null) {
+            this.setIdSolicitante(entity.getIdSolicitante());
+        }
+        if (entity.getIdEntrega() != null) {
+            this.setIdEntrega(entity.getIdEntrega());
+        }
+        if (entity.getIdRecibido()!= null) {
+            this.setIdRecibido(entity.getIdRecibido());
+        }
+
     }
 }
