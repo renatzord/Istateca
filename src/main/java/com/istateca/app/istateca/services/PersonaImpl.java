@@ -1,10 +1,13 @@
 package com.istateca.app.istateca.services;
 
+import com.istateca.app.istateca.exception.ResourceNotFoundException;
 import com.istateca.app.istateca.models.Persona;
 import com.istateca.app.istateca.daos.BaseRepository;
 import com.istateca.app.istateca.daos.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class PersonaImpl extends BaseServiceImpl<Persona, Integer> implements PersonaService {
@@ -18,6 +21,24 @@ public class PersonaImpl extends BaseServiceImpl<Persona, Integer> implements Pe
 
     @Override
     public Persona personaxCedula(String cedula) {
-        return (Persona) repository.findByCedula(cedula).orElse(null);
+        Optional<Persona> persona = repository.findByCedula(cedula);
+        if(persona.isEmpty()) {
+            throw new ResourceNotFoundException("La persona con cédula " + cedula + " no registrada");
+        }
+        return persona.get();
+    }
+
+    @Override
+    public Persona findByCorreo(String correo) {
+        Optional<Persona> persona = repository.findByCorreo(correo);
+        if(persona.isEmpty()) {
+            throw new ResourceNotFoundException("Correo " + correo + ", no registrada");
+        }
+        return persona.get();
+    }
+
+    @Override
+    public boolean existsByCorreo(String correo) {
+        return repository.existsByCorreo(correo);
     }
 }

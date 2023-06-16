@@ -6,4 +6,8 @@ public interface PersonaService extends BaseService<Persona, Integer> {
 
     public Persona personaxCedula(String cedula);
 
+    Persona findByCorreo(String correo);
+
+    boolean existsByCorreo(String correo);
+
 }

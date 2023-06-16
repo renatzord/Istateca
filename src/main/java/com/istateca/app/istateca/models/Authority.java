@@ -20,7 +20,7 @@ public class Authority implements Serializable {
 
     // Bidirectional Relationships
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "per_id", referencedColumnName = "per_id")
     private Persona persona;
 

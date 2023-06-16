@@ -1,12 +1,14 @@
 package com.istateca.app.istateca.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -43,6 +45,7 @@ public class Persona implements Serializable,Actualizable<Persona> {
 
     //@NotEmpty(message = "Campo apellido obligatorio.")
     @Column(name = "per_password")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column(name = "per_tipo")
@@ -62,8 +65,8 @@ public class Persona implements Serializable,Actualizable<Persona> {
     // Bidirectional Relationships
 
     @JsonIgnore
-    @OneToOne(mappedBy = "persona", fetch = FetchType.EAGER)
-    private Authority authorities;
+    @OneToMany(mappedBy = "persona", fetch = FetchType.EAGER)
+    private Set<Authority> authorities;
 
     @JsonIgnore
     @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
