@@ -22,4 +22,9 @@ public class PrestamoImpl extends BaseServiceImpl<Prestamo, Integer> implements 
     public List<Prestamo> prestamoxestadoprestamo(Integer estado) {
         return repository.findAllByEstadoPrestamo(estado);
     }
+
+    @Override
+    public List<Prestamo> prestamoxcedula(String cedula) {
+        return repository.findAllByIdSolicitanteCedula(cedula);
+    }
 }

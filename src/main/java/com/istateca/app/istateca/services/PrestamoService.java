@@ -8,4 +8,6 @@ public interface PrestamoService extends BaseService<Prestamo, Integer> {
 
     public List<Prestamo> prestamoxestadoprestamo(Integer estado);
 
+    public List<Prestamo> prestamoxcedula(String cedula);
+
 }

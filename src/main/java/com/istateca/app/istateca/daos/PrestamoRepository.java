@@ -10,4 +10,6 @@ public interface PrestamoRepository extends BaseRepository<Prestamo,Integer>{
 
     List<Prestamo> findAllByEstadoPrestamo(Integer estado);
 
+    List<Prestamo> findAllByIdSolicitanteCedula(String cedula);
+
 }
