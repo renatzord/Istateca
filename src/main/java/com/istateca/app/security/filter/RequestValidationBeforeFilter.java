@@ -39,10 +39,7 @@ public class RequestValidationBeforeFilter  implements Filter {
                     }
                     String email = token.substring(0, delim);
                     if (!email.toLowerCase().endsWith("@tecazuay.edu.ec")) {
-                        int statusCode = 418; // El código de estado HTTP
-                        String statusMessage = "No posee la extensión @tecazuay.edu.ec"; // Mensaje personalizado
-                        res.setStatus(statusCode);
-                        res.sendError(statusCode, statusMessage);
+                        res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                         return;
                     }
                 } catch (IllegalArgumentException e) {

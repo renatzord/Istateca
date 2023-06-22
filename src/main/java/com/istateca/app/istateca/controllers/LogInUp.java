@@ -50,12 +50,14 @@ public class LogInUp {
     }
 
     public boolean logUp(String email,String nombres) {
-        UsuarioFenix usuario=usuarioFenixService.findByCorreo(email);
-        if (usuario ==null) usuario=usuarioFenixService.findByNombresAndApellidosQuery(nombres);
-        if (usuario !=null) {
+        UsuarioFenix usuario = usuarioFenixService.findByCorreo(email);
+        if (usuario == null)
+            usuario = usuarioFenixService.findByNombresAndApellidosQuery(nombres);
+        if (usuario != null) {
             Persona fenix = new Persona();
             System.out.println(nombres+email);
             String hashPwd = passwordEncoder.encode(nombres+email);
+            String ps = nombres+email;
             fenix.setCorreo(email);
             fenix.setPassword(hashPwd);
             fenix.setApellidos(usuario.getApellidos());
@@ -68,7 +70,7 @@ public class LogInUp {
             fenix.setActivo(true);
             Persona persona = personaService.save(fenix);
             Authority role = new Authority();
-            role.setName("ROLE_ESTUD");
+            role.setName("ROLE_STUD");
             role.setPersona(persona);
             authorityRepository.save(role);
             return true;

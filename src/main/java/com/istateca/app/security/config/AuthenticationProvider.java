@@ -36,8 +36,7 @@ public class AuthenticationProvider implements org.springframework.security.auth
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
-        String pwd = passwordEncoder.encode(authentication.getCredentials().toString());
-        //List<Usuario> usuarios = usuarioService.findByCorreo(username);
+        String pwd = authentication.getCredentials().toString();
         Persona usuario = personaService.findByCorreo(username);
             Set<Authority> authorities = authorityRepository.findByPersona(usuario);
             if (passwordEncoder.matches(pwd, usuario.getPassword())) {
