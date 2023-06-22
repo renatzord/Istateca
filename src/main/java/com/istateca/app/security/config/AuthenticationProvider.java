@@ -32,13 +32,11 @@ public class AuthenticationProvider implements org.springframework.security.auth
     @Autowired
     private AuthorityRepository authorityRepository;
 
-    @Value("${secretPsw}")
-    String secretPsw;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
-        String pwd = secretPsw;
+        String pwd = passwordEncoder.encode(authentication.getCredentials().toString());
         //List<Usuario> usuarios = usuarioService.findByCorreo(username);
         Persona usuario = personaService.findByCorreo(username);
             Set<Authority> authorities = authorityRepository.findByPersona(usuario);

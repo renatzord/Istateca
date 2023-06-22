@@ -41,4 +41,5 @@ public class PersonaImpl extends BaseServiceImpl<Persona, Integer> implements Pe
     public boolean existsByCorreo(String correo) {
         return repository.existsByCorreo(correo);
     }
+
 }

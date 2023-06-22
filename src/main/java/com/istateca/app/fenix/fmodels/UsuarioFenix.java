@@ -35,4 +35,7 @@ public class UsuarioFenix implements Serializable {
 
     @Column(name = "direccion")
     private String direccion;
+
+    @Column(name = "correo")
+    private String correo;
 }

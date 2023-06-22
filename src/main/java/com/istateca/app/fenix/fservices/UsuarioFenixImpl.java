@@ -38,4 +38,14 @@ public class UsuarioFenixImpl implements UsuarioFenixService{
         return (List<UsuarioFenix>) usuarioFenixRepository.findByTipo(2).orElse(null);
     }
 
+    @Override
+    public UsuarioFenix findByCorreo(String correo) {
+        return usuarioFenixRepository.findByCorreo(correo).orElse(null);
+    }
+
+    @Override
+    public UsuarioFenix findByNombresAndApellidosQuery(String parametro) {
+        return usuarioFenixRepository.findByNombresAndApellidosQuery(parametro).orElse(null);
+    }
+
 }

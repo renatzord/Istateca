@@ -1,6 +1,8 @@
 package com.istateca.app.istateca.controllers;
 
 import com.istateca.app.constant.Validate;
+import com.istateca.app.fenix.fmodels.UsuarioFenix;
+import com.istateca.app.fenix.fservices.UsuarioFenixService;
 import com.istateca.app.istateca.daos.AuthorityRepository;
 import com.istateca.app.istateca.models.Authority;
 import com.istateca.app.istateca.models.Persona;
@@ -20,22 +22,24 @@ public class LogInUp {
     PersonaService personaService;
 
     @Autowired
+    UsuarioFenixService usuarioFenixService;
+
+
+    @Autowired
     PasswordEncoder passwordEncoder;
 
     @Autowired
     AuthorityRepository authorityRepository;
 
-    @Value("${secretPsw}")
-    String secretPsw;
 
     @PostMapping("/credentials")
-    public ResponseEntity<?> verificar(@RequestParam String email) {
+    public ResponseEntity<?> verificar(@RequestParam String email,@RequestParam String nombres) {
         if(!Validate.verifyEmail(email)) {
             return ResponseEntity.badRequest().body("No estas ligado al ISTA");
         }
         if (!personaService.existsByCorreo(email)) {
-            logUp(email);
-            return ResponseEntity.ok().body("Persona autorizada");
+            if(logUp(email,nombres)) return ResponseEntity.ok().body("Persona registrada");
+            return ResponseEntity.badRequest().body("Usted ya esta salio del ISTA");
         }
         return ResponseEntity.ok().body("Pesona registrada");
     }
@@ -45,20 +49,31 @@ public class LogInUp {
         return personaService.findByCorreo(authentication.getName());
     }
 
-    public void logUp(String email) {
-        Persona fenix = new Persona();
-        String hashPwd = passwordEncoder.encode(secretPsw);
-        fenix.setCorreo(email);
-        fenix.setPassword(hashPwd);
-        fenix.setApellidos("Zuin Malla");
-        fenix.setNombres("Andres Zuin");
-        fenix.setDireccion("CUENCA");
-        fenix.setCedula("1724455223");
-        Persona persona = personaService.save(fenix);
-        Authority role = new Authority();
-        role.setName("ROLE_ESTUD");
-        role.setPersona(persona);
-        authorityRepository.save(role);
+    public boolean logUp(String email,String nombres) {
+        UsuarioFenix usuario=usuarioFenixService.findByCorreo(email);
+        if (usuario ==null) usuario=usuarioFenixService.findByNombresAndApellidosQuery(nombres);
+        if (usuario !=null) {
+            Persona fenix = new Persona();
+            System.out.println(nombres+email);
+            String hashPwd = passwordEncoder.encode(nombres+email);
+            fenix.setCorreo(email);
+            fenix.setPassword(hashPwd);
+            fenix.setApellidos(usuario.getApellidos());
+            fenix.setNombres(usuario.getNombres());
+            fenix.setDireccion(usuario.getDireccion());
+            fenix.setCedula(usuario.getCedula());
+            fenix.setFenixId(usuario.getAlumno_docenteId());
+            fenix.setTipo(1);
+            fenix.setCalificacion(5);
+            fenix.setActivo(true);
+            Persona persona = personaService.save(fenix);
+            Authority role = new Authority();
+            role.setName("ROLE_ESTUD");
+            role.setPersona(persona);
+            authorityRepository.save(role);
+            return true;
+        }
+        return false;
     }
 
 }
