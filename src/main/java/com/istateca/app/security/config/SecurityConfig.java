@@ -48,11 +48,22 @@ public class SecurityConfig {
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new RequestValidationBeforeFilter(), BasicAuthenticationFilter.class)
                 .addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)
-                .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class).authorizeHttpRequests()
-                .requestMatchers("/accion/**").hasAnyRole("ESTUD", "TEMP", "TISTA", "GEREN", "RESPP", "DIREC", "CORDI", "RECT", "ADMIN")
-                .requestMatchers("/ingresar").authenticated()
-                // Letting Access of fenix to ALL by the moment
-                .requestMatchers("/ingresar", "/credentials").permitAll()
+                .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
+                .authorizeHttpRequests()
+                    .requestMatchers("/autor/**").hasAnyRole("STUD", "BLIB", "ADMIN")
+                    .requestMatchers("/autorlibro/**").hasAnyRole("STUD", "BLIB", "ADMIN")
+                    .requestMatchers("/bibliotecariocargo/**").hasAnyRole("STUD", "BLIB", "ADMIN")
+                    .requestMatchers("/carrera/**").hasAnyRole("STUD", "BLIB", "ADMIN")
+                    .requestMatchers("/etiqueta/**").hasAnyRole("STUD", "BLIB", "ADMIN")
+                    .requestMatchers("/tags/**").hasAnyRole("STUD", "BLIB", "ADMIN")
+                    .requestMatchers("/libro/**").hasAnyRole("STUD", "BLIB", "ADMIN")
+                    .requestMatchers("/persona/**").hasAnyRole("STUD", "BLIB", "ADMIN")
+                    .requestMatchers("/prestamo/**").hasAnyRole("STUD", "BLIB", "ADMIN")
+                    .requestMatchers("/tercero/**").hasAnyRole("STUD", "BLIB", "ADMIN")
+                    .requestMatchers("/tipo/**").hasAnyRole("STUD", "BLIB", "ADMIN")
+                    .requestMatchers("/ingresar").authenticated()
+                    // Letting Access of fenix to ALL by the moment
+                    .requestMatchers("/ingresar", "/credentials").permitAll()
                 .and().formLogin().and().httpBasic();
         return http.build();
     }
