@@ -38,8 +38,11 @@ public class RequestValidationBeforeFilter  implements Filter {
                         throw new BadCredentialsException("Invalid basic authentication token");
                     }
                     String email = token.substring(0, delim);
-                    if (email.toLowerCase().contains("test")) {
-                        res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                    if (!email.toLowerCase().endsWith("@tecazuay.edu.ec")) {
+                        int statusCode = 418; // El código de estado HTTP
+                        String statusMessage = "No posee la extensión @tecazuay.edu.ec"; // Mensaje personalizado
+                        res.setStatus(statusCode);
+                        res.sendError(statusCode, statusMessage);
                         return;
                     }
                 } catch (IllegalArgumentException e) {
