@@ -48,11 +48,22 @@ public class SecurityConfig {
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new RequestValidationBeforeFilter(), BasicAuthenticationFilter.class)
                 .addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)
-                .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class).authorizeHttpRequests()
-                .requestMatchers("/accion/**").hasAnyRole("ESTUD", "TEMP", "TISTA", "GEREN", "RESPP", "DIREC", "CORDI", "RECT", "ADMIN")
-                .requestMatchers("/ingresar").authenticated()
-                // Letting Access of fenix to ALL by the moment
-                .requestMatchers("/ingresar", "/credentials").permitAll()
+                .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
+                .authorizeHttpRequests()
+                    .requestMatchers("/autor/**").hasAnyRole("ROLE_STUD", "ROLE_BLIB", "ROLE_ADMIN")
+                    .requestMatchers("/autorlibro/**").hasAnyRole("ROLE_STUD", "ROLE_BLIB", "ROLE_ADMIN")
+                    .requestMatchers("/bibliotecariocargo/**").hasAnyRole("ROLE_STUD", "ROLE_BLIB", "ROLE_ADMIN")
+                    .requestMatchers("/carrera/**").hasAnyRole("ROLE_STUD", "ROLE_BLIB", "ROLE_ADMIN")
+                    .requestMatchers("/etiqueta/**").hasAnyRole("ROLE_STUD", "ROLE_BLIB", "ROLE_ADMIN")
+                    .requestMatchers("/tags/**").hasAnyRole("ROLE_STUD", "ROLE_BLIB", "ROLE_ADMIN")
+                    .requestMatchers("/libro/**").hasAnyRole("ROLE_STUD", "ROLE_BLIB", "ROLE_ADMIN")
+                    .requestMatchers("/persona/**").hasAnyRole("ROLE_STUD", "ROLE_BLIB", "ROLE_ADMIN")
+                    .requestMatchers("/prestamo/**").hasAnyRole("ROLE_STUD", "ROLE_BLIB", "ROLE_ADMIN")
+                    .requestMatchers("/tercero/**").hasAnyRole("ROLE_STUD", "ROLE_BLIB", "ROLE_ADMIN")
+                    .requestMatchers("/tipo/**").hasAnyRole("ROLE_STUD", "ROLE_BLIB", "ROLE_ADMIN")
+                    .requestMatchers("/ingresar").authenticated()
+                    // Letting Access of fenix to ALL by the moment
+                    .requestMatchers("/ingresar", "/credentials").permitAll()
                 .and().formLogin().and().httpBasic();
         return http.build();
     }
