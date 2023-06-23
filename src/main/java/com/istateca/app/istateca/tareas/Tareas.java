@@ -16,7 +16,7 @@ public class Tareas {
     private PrestamoService prestamoService;
 
     // Tarea para el cambio de estado en caso de sobrepasar fecha maxima del prestamo
-    @Scheduled(cron = "0 30 00 * * *")
+    @Scheduled(cron = "0 00 00 * * *")
     public void ejecutarTarea() {
         LocalDate localDate = LocalDate.now();
         Date date = java.sql.Date.valueOf(localDate);
