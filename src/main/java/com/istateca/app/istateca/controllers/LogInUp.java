@@ -38,7 +38,7 @@ public class LogInUp {
             return ResponseEntity.badRequest().body("No estas ligado al ISTA");
         }
         if (!personaService.existsByCorreo(email)) {
-            if(logUp(email,nombres)) return ResponseEntity.ok().body("Persona registrada");
+            if(logUp(email,nombres)) return ResponseEntity.ok().body("Registro exitoso");
             return ResponseEntity.badRequest().body("Usted ya esta salio del ISTA");
         }
         return ResponseEntity.ok().body("Pesona registrada");

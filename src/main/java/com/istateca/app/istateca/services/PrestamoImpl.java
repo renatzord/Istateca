@@ -6,6 +6,7 @@ import com.istateca.app.istateca.models.Prestamo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,5 +22,15 @@ public class PrestamoImpl extends BaseServiceImpl<Prestamo, Integer> implements 
     @Override
     public List<Prestamo> prestamoxestadoprestamo(Integer estado) {
         return repository.findAllByEstadoPrestamo(estado);
+    }
+
+    @Override
+    public List<Prestamo> prestamoxcedula(String cedula) {
+        return repository.findAllByIdSolicitanteCedula(cedula);
+    }
+
+    @Override
+    public List<Prestamo> prestamopasados(Date fechaActual) {
+        return repository.findByFechaMaximaLessThanAndEstadoPrestamo(fechaActual,2);
     }
 }
