@@ -1,4 +1,4 @@
-package com.istateca.app.istateca.tareas;
+package com.istateca.app.istateca.utilidades;
 
 import com.istateca.app.istateca.models.Prestamo;
 import com.istateca.app.istateca.services.PrestamoService;
