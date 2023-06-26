@@ -72,6 +72,24 @@ public class LibroController extends BaseController<Libro> {
         }
     }
 
+    @PostMapping("/subirpdf/{id}")
+    public ResponseEntity<?> subirPdf(@PathVariable Integer id, @RequestParam("pdf") MultipartFile pdf) {
+        if (!pdf.isEmpty()) {
+            String resultado = subirArchivo(rutageneral, "libro_" + id+"_donacion", pdf);
+            if (resultado.startsWith("Error")) {
+                return ResponseEntity.badRequest().body(resultado);
+            } else {
+                Optional<Libro> libro = service.findById(id);
+                resultado=resultado.substring(resultado.indexOf("/Archivos"));
+                libro.get().setUrlImagen(resultado);
+                service.save(libro.get());
+                return ResponseEntity.ok().body("Acta Guardada en : "+resultado);
+            }
+        } else {
+            return ResponseEntity.badRequest().body("El PDF está vacía.");
+        }
+    }
+
     /*endpoint que obtiene imagen, usar solo en caso de que falle el path directo,error de caracteres / a //
     @GetMapping("/obtenerimagen")
     public ResponseEntity<Resource> obtenerImagen(@RequestParam("ruta") String ruta) {
