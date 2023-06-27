@@ -1,14 +1,12 @@
 package com.istateca.app.istateca.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data
@@ -85,11 +83,8 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
     @JoinColumn(name = "lib_id", referencedColumnName = "lib_id")
     private Libro libro;
 
-    // Bidirectional Relationships
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "prestamo", fetch = FetchType.LAZY)
-    private List<Tercero> prestamosTerceros;
+    @OneToOne(mappedBy = "prestamo")
+    private TerceroPrestamo terceroPrestamo;
 
     @Override
     public void actualizarDatos(Prestamo entity) {
@@ -138,6 +133,8 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
         if (entity.getIdRecibido()!= null) {
             this.setIdRecibido(entity.getIdRecibido());
         }
-
+        if (entity.getTerceroPrestamo()!= null) {
+            this.setTerceroPrestamo(entity.getTerceroPrestamo());
+        }
     }
 }

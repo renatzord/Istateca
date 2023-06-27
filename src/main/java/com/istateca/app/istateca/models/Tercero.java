@@ -1,5 +1,6 @@
 package com.istateca.app.istateca.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -7,6 +8,7 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Data
@@ -35,11 +37,11 @@ public class Tercero implements Serializable,Actualizable<Tercero> {
     @Column(name = "ter_telefono")
     private String telefono;
 
-    // Foreign Key - Relationships
+    // Bidirectional Relationships
 
-    @ManyToOne
-    @JoinColumn(name = "pre_id", referencedColumnName = "pre_id")
-    private Prestamo prestamo;
+    @JsonIgnore
+    @OneToMany(mappedBy = "tercero", fetch = FetchType.LAZY)
+    private List<TerceroPrestamo> prestamosTerceros;
 
     @Override
     public void actualizarDatos(Tercero entity) {

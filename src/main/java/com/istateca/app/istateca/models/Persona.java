@@ -88,6 +88,10 @@ public class Persona implements Serializable,Actualizable<Persona> {
     @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
     private List<Libro> librosIngresados;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
+    private List<Sugerencia> sugerencias;
+
     @Override
     public void actualizarDatos(Persona entity) {
         if (entity.getCedula() != null) {
