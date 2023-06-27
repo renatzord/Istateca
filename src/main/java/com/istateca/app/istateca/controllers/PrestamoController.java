@@ -4,6 +4,7 @@ import com.istateca.app.istateca.models.Prestamo;
 import com.istateca.app.istateca.services.BaseService;
 import com.istateca.app.istateca.services.PrestamoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,19 +35,34 @@ public class PrestamoController  extends BaseController<Prestamo> {
     }
 
     @GetMapping("/listarxestado")
-    public List<Prestamo> prestamosxestado(@RequestParam(value = "parametro") Integer parametro) {
-        return service.prestamoxestadoprestamo(parametro);
+    public ResponseEntity<List<Prestamo>> prestamosxestado(@RequestParam(value = "parametro") Integer parametro) {
+        List<Prestamo> prestamos = service.prestamoxestadoprestamo(parametro);
+        if (prestamos.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(prestamos);
+        }
     }
 
     @GetMapping("/listarxcedula")
-    public List<Prestamo> prestamosxcedula(@RequestParam(value = "cedula") String cedula) {
-        return service.prestamoxcedula(cedula);
+    public ResponseEntity<List<Prestamo>> prestamosxcedula(@RequestParam(value = "cedula") String cedula) {
+        List<Prestamo> prestamos = service.prestamoxcedula(cedula);
+        if (prestamos.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(prestamos);
+        }
     }
 
     @GetMapping("/listarpasados")
-    public List<Prestamo> prestamospasados() {
+    public ResponseEntity<List<Prestamo>> prestamospasados() {
         LocalDate localDate = LocalDate.now();
         Date date = java.sql.Date.valueOf(localDate);
-        return service.prestamopasados(date);
+        List<Prestamo> prestamos = service.prestamopasados(date);
+        if (prestamos.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(prestamos);
+        }
     }
 }

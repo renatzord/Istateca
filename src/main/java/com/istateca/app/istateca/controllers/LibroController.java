@@ -40,18 +40,31 @@ public class LibroController extends BaseController<Libro> {
     }
 
     @GetMapping("/listarlibrosxnombre/{titulo}")
-    public List<Libro> librosxnombre(@PathVariable String titulo){
-        return service.librosxTitulo(titulo);
+    public ResponseEntity<List<Libro>> librosxNombre(@PathVariable String titulo) {
+        List<Libro> libros = service.librosxTitulo(titulo);
+        if (libros.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(libros);
+        }
     }
-
     @GetMapping("/listarlibrosxtipo/{tipoid}")
-    public List<Libro> librosxnombre(@PathVariable Integer tipoid){
-        return service.librosxTipo(tipoid);
+    public ResponseEntity<List<Libro>> librosxTipo(@PathVariable Integer tipoid) {
+        List<Libro> libros = service.librosxTipo(tipoid);
+        if (libros.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(libros);
+        }
     }
-
     @GetMapping("/buscarxcoincidencia")
-    public List<Libro> buscarLibros(@RequestParam(value = "parametro") String parametro) {
-        return service.librosxcoincidencias(parametro);
+    public ResponseEntity<List<Libro>> librosxCoincidencia(@RequestParam(value = "parametro") String parametro) {
+        List<Libro> libros = service.librosxcoincidencias(parametro);
+        if (libros.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(libros);
+        }
     }
 
     @PostMapping("/subirimagen/{id}")

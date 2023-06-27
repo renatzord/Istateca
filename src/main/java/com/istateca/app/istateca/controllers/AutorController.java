@@ -4,6 +4,7 @@ import com.istateca.app.istateca.models.Autor;
 import com.istateca.app.istateca.services.AutorService;
 import com.istateca.app.istateca.services.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,8 +31,13 @@ public class AutorController extends BaseController<Autor> {
     }
 
     @GetMapping("/listarautoresxnombre/{nombre}")
-    public List<Autor> autor_libro(@PathVariable String nombre){
-        return service.autoresxNombre(nombre);
+    public ResponseEntity<List<Autor>> autor_libro(@PathVariable String nombre) {
+        List<Autor> autores = service.autoresxNombre(nombre);
+        if (autores.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(autores);
+        }
     }
 
 }

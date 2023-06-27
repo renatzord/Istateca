@@ -3,7 +3,6 @@ package com.istateca.app.istateca.models;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -24,7 +23,7 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
     @Column(name = "pre_fecha_solicitud")
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date fechaFin;
+    private Date fechaFin; //  error en nombre, correcto fecha solicitud no se cambia por implementacion
 
     @NotNull(message = "Campo estado libro obligatorio.")
     @Column(name = "pre_estado_libro")

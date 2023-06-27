@@ -5,6 +5,7 @@ import com.istateca.app.istateca.services.BaseService;
 import com.istateca.app.istateca.services.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("/persona")
@@ -27,8 +28,12 @@ public class PersonaController extends BaseController<Persona> {
     }
 
     @GetMapping("/personaxcedula/{cedula}")
-    public Persona librosxnombre(@PathVariable String cedula){
-        return service.personaxCedula(cedula);
+    public ResponseEntity<Persona> personaxcedula(@PathVariable String cedula) {
+        Persona persona = service.personaxCedula(cedula);
+        if (persona == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(persona);
+        }
     }
-
 }

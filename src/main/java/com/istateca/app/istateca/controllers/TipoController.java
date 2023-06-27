@@ -27,7 +27,7 @@ public class TipoController extends BaseController<Tipo> {
     protected BaseService<Tipo, Integer> getService() {
         return service;
     }
-    //ejemplo para vistas
+    //ejemplo para vistas u entidades mescladas
     /*@GetMapping("/vista")
     public ResponseEntity<?> obtenerVista() {
         List<Libro> libros = libroService.findAll();
