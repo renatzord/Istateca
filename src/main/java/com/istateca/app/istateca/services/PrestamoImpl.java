@@ -33,4 +33,14 @@ public class PrestamoImpl extends BaseServiceImpl<Prestamo, Integer> implements 
     public List<Prestamo> prestamopasados(Date fechaActual) {
         return repository.findByFechaMaximaLessThanAndEstadoPrestamo(fechaActual,2);
     }
+
+    @Override
+    public List<Prestamo> reporteprestamo(Integer tipo, Integer carreraId, Integer estado,Date inicio, Date fin) {
+        return repository.findByTipoPrestamoAndCarreraIdAndEstadoPrestamoAndFechaFinBetween(tipo,carreraId,estado,inicio,fin);
+    }
+
+    @Override
+    public List<Prestamo> reporteprestamosinestado(Integer tipo, Integer carreraId,Date inicio, Date fin) {
+        return repository.findByTipoPrestamoAndCarreraIdAndFechaFinBetween(tipo,carreraId,inicio,fin);
+    }
 }

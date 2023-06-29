@@ -13,4 +13,8 @@ public interface PrestamoService extends BaseService<Prestamo, Integer> {
 
     public List<Prestamo> prestamopasados(Date fechaActual);
 
+    public List<Prestamo> reporteprestamo(Integer tipo,Integer carreraId,Integer estado,Date inicio, Date fin);
+
+    public List<Prestamo> reporteprestamosinestado(Integer tipo,Integer carreraId,Date inicio, Date fin);
+
 }

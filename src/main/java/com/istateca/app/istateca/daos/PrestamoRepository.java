@@ -15,4 +15,10 @@ public interface PrestamoRepository extends BaseRepository<Prestamo,Integer>{
 
     List<Prestamo> findByFechaMaximaLessThanAndEstadoPrestamo(Date fechaActual,Integer estado);
 
+    List<Prestamo> findByTipoPrestamoAndCarreraIdAndEstadoPrestamoAndFechaFinBetween
+                                        (Integer tipo,Integer carreraId,Integer estado,Date inicio,Date fin);
+
+    List<Prestamo> findByTipoPrestamoAndCarreraIdAndFechaFinBetween
+                                        (Integer tipo,Integer carreraId,Date inicio,Date fin);
+
 }

@@ -44,7 +44,7 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fechaDevolucion;
 
-    @NotNull(message = "Se nesesita fecha maxima de devolucion.")
+    //@NotNull(message = "Se nesesita fecha maxima de devolucion.")
     @Column(name = "pre_fecha_maxima")
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")

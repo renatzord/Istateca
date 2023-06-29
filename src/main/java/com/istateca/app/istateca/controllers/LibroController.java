@@ -108,4 +108,5 @@ public class LibroController extends BaseController<Libro> {
     public ResponseEntity<Resource> obtenerImagen(@RequestParam("ruta") String ruta) {
         return obtenerArchivo(ruta, 1);
     }*/
+
 }
