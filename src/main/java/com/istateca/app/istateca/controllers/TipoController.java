@@ -4,8 +4,13 @@ import com.istateca.app.istateca.models.Tipo;
 import com.istateca.app.istateca.services.BaseService;
 import com.istateca.app.istateca.services.TipoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @RestController
@@ -49,5 +54,15 @@ public class TipoController extends BaseController<Tipo> {
             return ResponseEntity.notFound().build();
         }
     }*/
+
+    @GetMapping("/buscarxnombre")
+    public ResponseEntity<List<Tipo>> tiposxnombre(@RequestParam(value = "nombre") String nombre) {
+        List<Tipo> tipos = service.tipoxnombre(nombre);
+        if (tipos.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(tipos);
+        }
+    }
 
 }

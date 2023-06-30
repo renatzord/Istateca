@@ -57,7 +57,7 @@ public class LibroController extends BaseController<Libro> {
             return ResponseEntity.ok(libros);
         }
     }
-    @GetMapping("/buscarxcoincidencia")
+    @GetMapping("/buscarxcoincidencias")
     public ResponseEntity<List<Libro>> librosxCoincidencia(@RequestParam(value = "parametro") String parametro) {
         List<Libro> libros = service.librosxcoincidencias(parametro);
         if (libros.isEmpty()) {
