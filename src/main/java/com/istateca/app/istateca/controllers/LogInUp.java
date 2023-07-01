@@ -65,12 +65,16 @@ public class LogInUp {
             fenix.setDireccion(usuario.getDireccion());
             fenix.setCedula(usuario.getCedula());
             fenix.setFenixId(usuario.getAlumno_docenteId());
-            fenix.setTipo(1);
+            fenix.setTipo(usuario.getTipo());
             fenix.setCalificacion(5);
             fenix.setActivo(true);
             Persona persona = personaService.save(fenix);
             Authority role = new Authority();
-            role.setName("ROLE_STUD");
+            if(usuario.getTipo()==1){
+                role.setName("ROLE_STUD");
+            }else{
+                role.setName("ROLE_DOCEN");
+            }
             role.setPersona(persona);
             authorityRepository.save(role);
             return true;

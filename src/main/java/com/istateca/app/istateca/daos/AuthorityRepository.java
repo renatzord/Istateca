@@ -16,4 +16,6 @@ public interface AuthorityRepository extends BaseRepository<Authority, Integer> 
 
     List<Authority> findByName(String name);
 
+    Authority findByPersonaCedula(String cedula);
+
 }
