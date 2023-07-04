@@ -65,6 +65,7 @@ public class SecurityConfig {
                     .requestMatchers("/tercero_prestamo/**").hasAnyRole("STUD", "BLIB", "ADMIN", "DOCEN")
                     .requestMatchers("/carrerafenix/**").hasAnyRole("STUD", "BLIB", "ADMIN", "DOCEN")
                     .requestMatchers("/usuariofenix/**").hasAnyRole("STUD", "BLIB", "ADMIN", "DOCEN")
+                    .requestMatchers("/notificacion/**").hasAnyRole("STUD", "BLIB", "ADMIN", "DOCEN")
                     .requestMatchers("/ingresar").authenticated()
                     // Letting Access of fenix to ALL by the moment
                     .requestMatchers("/ingresar", "/credentials","/Archivos/**","/libro/listar").permitAll()

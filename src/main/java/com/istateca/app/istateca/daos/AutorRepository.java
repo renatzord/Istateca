@@ -8,6 +8,6 @@ import java.util.List;
 @Repository
 public interface AutorRepository extends BaseRepository<Autor,Integer>{
 
-    List<Autor> findAllByNombreLike(String nombre);
+    List<Autor> findAllByNombreContainingIgnoreCase(String nombre);
 
 }

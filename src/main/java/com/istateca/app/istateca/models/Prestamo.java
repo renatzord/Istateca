@@ -1,12 +1,14 @@
 package com.istateca.app.istateca.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -60,7 +62,6 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
     @Column(name = "pre_tipo_prestamo")
     private Integer tipoPrestamo;
 
-
     // Foreign Key - Relationships
 
     @ManyToOne
@@ -85,6 +86,12 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
 
     @OneToOne(mappedBy = "prestamo")
     private TerceroPrestamo terceroPrestamo;
+
+    // Bidirectional Relationships
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "prestamo", fetch = FetchType.LAZY)
+    private List<Notificacion> notificaciones;
 
     @Override
     public void actualizarDatos(Prestamo entity) {
