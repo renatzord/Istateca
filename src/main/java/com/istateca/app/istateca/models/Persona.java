@@ -62,6 +62,9 @@ public class Persona implements Serializable,Actualizable<Persona> {
     @Column(name = "per_activo")
     private Boolean activo;
 
+    @Column(name = "per_device")
+    private String device;
+
     // Bidirectional Relationships
 
     @JsonIgnore
@@ -123,6 +126,9 @@ public class Persona implements Serializable,Actualizable<Persona> {
         }
         if (entity.getPassword() != null) {
             this.setPassword(entity.getPassword());
+        }
+        if (entity.getDevice() != null) {
+            this.setDevice(entity.getDevice());
         }
     }
 }

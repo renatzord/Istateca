@@ -21,4 +21,8 @@ public interface PrestamoRepository extends BaseRepository<Prestamo,Integer>{
     List<Prestamo> findByTipoPrestamoAndCarreraIdAndFechaFinBetween
                                         (Integer tipo,Integer carreraId,Date inicio,Date fin);
 
+    List<Prestamo> findByCarreraIdAndFechaFinBetween(Integer carreraId,Date inicio,Date fin);
+
+    List<Prestamo> findByFechaFinBetween(Date inicio,Date fin);
+
 }

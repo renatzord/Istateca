@@ -73,7 +73,8 @@ public class PrestamoController  extends BaseController<Prestamo> {
         }
     }
 
-    @GetMapping("/reporteprestamos")
+    //endopint que devuelve un HashMap
+    /*@GetMapping("/reporteprestamos")
     public ResponseEntity<?> reportePrestamo(@RequestParam(value = "inicio") String inicio,@RequestParam(value = "fin") String fin) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date finicio= new Date();
@@ -153,6 +154,30 @@ public class PrestamoController  extends BaseController<Prestamo> {
         } else {
             return ResponseEntity.ok(reporte);
         }
+    }*/
+
+    @GetMapping("/prestamoconcarrera")
+    public ResponseEntity<List<Prestamo>> prestamosreportecarrera
+                (@RequestParam(value = "carreraId") Integer id,@RequestParam(value = "inicio") String inicio,@RequestParam(value = "fin") String fin) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date finicio= new Date();
+        Date ffin= new Date();
+        System.out.println(finicio+" "+ffin);
+        try {
+            finicio = dateFormat.parse(inicio);
+            ffin = dateFormat.parse(fin);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        List<Prestamo> prestamos;
+        if(id>0) prestamos = service.reporteprestamoconcarrera(id,finicio,ffin);
+        else prestamos = service.reporteprestamosincarrera(finicio,ffin);
+        if (prestamos.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(prestamos);
+        }
     }
+
 
 }

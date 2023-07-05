@@ -43,4 +43,16 @@ public class PrestamoImpl extends BaseServiceImpl<Prestamo, Integer> implements 
     public List<Prestamo> reporteprestamosinestado(Integer tipo, Integer carreraId,Date inicio, Date fin) {
         return repository.findByTipoPrestamoAndCarreraIdAndFechaFinBetween(tipo,carreraId,inicio,fin);
     }
+
+    @Override
+    public List<Prestamo> reporteprestamosincarrera(Date inicio, Date fin) {
+        return repository.findByFechaFinBetween(inicio,fin);
+    }
+
+    @Override
+    public List<Prestamo> reporteprestamoconcarrera(Integer carreraId, Date inicio, Date fin) {
+        return repository.findByCarreraIdAndFechaFinBetween(carreraId,inicio,fin);
+    }
+
+
 }
