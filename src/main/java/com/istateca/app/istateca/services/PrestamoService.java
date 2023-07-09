@@ -7,18 +7,24 @@ import java.util.List;
 
 public interface PrestamoService extends BaseService<Prestamo, Integer> {
 
-    public List<Prestamo> prestamoxestadoprestamo(Integer estado);
+    /**
+     *Servicio que devuelve un listado de prestamo de acuerdo al atributo prestamoEstado
+     * @param estado Estado que deseamos buscar
+     * @Type Prestamo
+     */
+    List<Prestamo> prestamoxestadoprestamo(Integer estado);
 
-    public List<Prestamo> prestamoxcedula(String cedula);
+    List<Prestamo> prestamoxcedula(String cedula);
 
-    public List<Prestamo> prestamopasados(Date fechaActual);
+    List<Prestamo> prestamopasados(Date fechaActual);
 
-    public List<Prestamo> reporteprestamo(Integer tipo,Integer carreraId,Integer estado,Date inicio, Date fin);
+    List<Prestamo> reporteprestamo(Integer tipo,Integer carreraId,Integer estado,Date inicio, Date fin);
 
-    public List<Prestamo> reporteprestamosinestado(Integer tipo,Integer carreraId,Date inicio, Date fin);
+    List<Prestamo> reporteprestamosinestado(Integer tipo,Integer carreraId,Date inicio, Date fin);
 
-    public List<Prestamo> reporteprestamosincarrera(Date inicio, Date fin);
+    List<Prestamo> reporteprestamosincarrera(Date inicio, Date fin);
 
-    public List<Prestamo> reporteprestamoconcarrera(Integer carreraId,Date inicio, Date fin);
+    List<Prestamo> reporteprestamoconcarrera(Integer carreraId,Date inicio, Date fin);
 
+    Integer numeroPrestamosActivos(List<Integer> estado,Integer idSolicitante);
 }

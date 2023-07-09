@@ -12,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/persona")
 public class PersonaController extends BaseController<Persona> {
@@ -95,4 +97,8 @@ public class PersonaController extends BaseController<Persona> {
         authorityRepository.save(role);
         return ResponseEntity.ok("Registro exitoso para "+persona.getCedula()+" con rol "+role.getName());
     }
+
+    /*public List<Persona> bibliotecariosyAdmins(){
+        return service.bibliotecarioDevice();
+    }*/
 }

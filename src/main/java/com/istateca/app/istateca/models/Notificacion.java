@@ -1,6 +1,5 @@
 package com.istateca.app.istateca.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -36,4 +35,6 @@ public class Notificacion implements Serializable,Actualizable<Notificacion> {
             this.setVisto(entity.getVisto());
         }
     }
+
+
 }

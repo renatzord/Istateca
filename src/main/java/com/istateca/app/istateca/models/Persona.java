@@ -130,5 +130,8 @@ public class Persona implements Serializable,Actualizable<Persona> {
         if (entity.getDevice() != null) {
             this.setDevice(entity.getDevice());
         }
+        if (entity.getDireccion() != null){
+            this.setDireccion(entity.getDireccion());
+        }
     }
 }

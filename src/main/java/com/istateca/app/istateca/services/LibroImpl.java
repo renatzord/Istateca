@@ -32,4 +32,9 @@ public class LibroImpl extends BaseServiceImpl<Libro, Integer> implements LibroS
     public List<Libro> librosxcoincidencias(String parametro) {
         return repository.findAllByTituloContainingIgnoreCaseOrSubtituloContainingIgnoreCaseOrDescripcionContainingIgnoreCaseOrAreaContainingIgnoreCaseOrEtiquetasLibroEtiquetaNombreContainingIgnoreCase(parametro,parametro,parametro,parametro,parametro);
     }
+
+    @Override
+    public boolean Disponible(Integer idLibro) {
+        return repository.existsByDisponibleIsTrueAndId(idLibro);
+    }
 }

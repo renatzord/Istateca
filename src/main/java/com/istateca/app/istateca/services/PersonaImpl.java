@@ -7,6 +7,8 @@ import com.istateca.app.istateca.daos.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -41,5 +43,16 @@ public class PersonaImpl extends BaseServiceImpl<Persona, Integer> implements Pe
     public boolean existsByCorreo(String correo) {
         return repository.existsByCorreo(correo);
     }
+
+    @Override
+    public List<Persona> bibliotecarioDevice() {
+        return repository.findByDeviceIsNotNullAndTipoIn(Arrays.asList(3,4));
+    }
+
+    @Override
+    public boolean Habilitado(Integer idPersona,Integer calificacion) {
+        return repository.existsByIdAndCalificacionGreaterThan(idPersona,calificacion);
+    }
+
 
 }

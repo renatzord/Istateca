@@ -25,4 +25,6 @@ public interface PrestamoRepository extends BaseRepository<Prestamo,Integer>{
 
     List<Prestamo> findByFechaFinBetween(Date inicio,Date fin);
 
+    Integer countByEstadoPrestamoInAndIdSolicitanteId(List<Integer> estados, Integer personaId);
+
 }

@@ -1,16 +1,16 @@
 package com.istateca.app.istateca.controllers;
 
-import com.istateca.app.istateca.models.Carrera;
+import com.istateca.app.istateca.models.Persona;
 import com.istateca.app.istateca.models.Prestamo;
 import com.istateca.app.istateca.services.BaseService;
-import com.istateca.app.istateca.services.CarreraService;
+import com.istateca.app.istateca.services.LibroService;
+import com.istateca.app.istateca.services.PersonaService;
 import com.istateca.app.istateca.services.PrestamoService;
+import com.istateca.app.istateca.utilidades.NotificacionDevice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,7 +22,7 @@ import java.util.*;
 @RequestMapping("/prestamo")
 public class PrestamoController  extends BaseController<Prestamo> {
 
-        /*
+    /*
     controladores basicos estan en controlador general
     crear: /prestamo/crear -> pasar requestbody
     listar: /prestamo/listar
@@ -33,12 +33,35 @@ public class PrestamoController  extends BaseController<Prestamo> {
     @Autowired
     private PrestamoService service;
 
+    //@Autowired
+    //private CarreraService carreraService;
+
     @Autowired
-    private CarreraService carreraService;
+    private PersonaService personaService;
+
+    @Autowired
+    private LibroService libroService;
 
     @Override
     protected BaseService<Prestamo, Integer> getService() {
         return service;
+    }
+
+    @Override
+    public ResponseEntity<Prestamo> crear(@RequestBody Prestamo prestamo) {
+        Prestamo nuevoPrestamo = service.save(prestamo);
+        if (nuevoPrestamo != null) {
+            List<Persona> biblios = personaService.bibliotecarioDevice();
+            if(biblios!=null){
+                for (Persona biblio:biblios) {
+                    NotificacionDevice.enviarNotificacion(biblio.getDevice(),"PRESTAMO SOLICITADO",nuevoPrestamo.mensaje(null));
+                }
+                System.out.println("Enviado a perosnas: "+biblios.size());
+            }
+            return ResponseEntity.ok(nuevoPrestamo);
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @GetMapping("/listarxestado")
@@ -179,5 +202,22 @@ public class PrestamoController  extends BaseController<Prestamo> {
         }
     }
 
+    @GetMapping("/habilitado")
+    public ResponseEntity<String> habilitado(
+            @RequestParam(value = "personaId") Integer personaId,@RequestParam(value = "libroId") Integer libroId) {
 
+        boolean libroDisponible = libroService.Disponible(libroId);
+        boolean personaHabilitada = personaService.Habilitado(personaId, 0);
+        Integer conteoPrestamos = service.numeroPrestamosActivos(Arrays.asList(2,4,5),personaId);
+
+        if (libroDisponible&&personaHabilitada&&conteoPrestamos<3)
+            return ResponseEntity.ok("Habilitado");
+        else{
+            String mensaje="";
+            if(!libroDisponible) mensaje+="Libro: No disponible  ";
+            if(!personaHabilitada) mensaje+="Persona: No Califica  ";
+            if(conteoPrestamos>2) mensaje+="Prestamos: Ya posee 3";
+            return ResponseEntity.ok(mensaje);
+        }
+    }
 }

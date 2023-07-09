@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface TipoService extends BaseService<Tipo, Integer> {
 
-    public List<Tipo> tipoxnombre(String nombre);
+    List<Tipo> tipoxnombre(String nombre);
 
 }

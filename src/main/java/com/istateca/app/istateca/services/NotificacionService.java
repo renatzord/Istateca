@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface NotificacionService extends BaseService<Notificacion, Integer>{
 
-    public List<Notificacion> notificacionesxusuario(Integer idSolicitante);
+    List<Notificacion> notificacionesxusuario(Integer idSolicitante);
 
-    public List<Notificacion> notificacionesxdocente();
+    List<Notificacion> notificacionesxdocente();
 
 }

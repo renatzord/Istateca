@@ -2,13 +2,16 @@ package com.istateca.app.istateca.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.istateca.app.istateca.utilidades.NotificacionDevice;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Data
@@ -144,4 +147,63 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
             this.setTerceroPrestamo(entity.getTerceroPrestamo());
         }
     }
+
+    @JsonIgnore
+    @Transient
+    private Integer estadoPrestamoAnterior;
+
+    @PostLoad
+    private void setEstadoPrestamoAnterior() {
+        this.estadoPrestamoAnterior = this.estadoPrestamo;
+    }
+    @PostUpdate
+    public void postUpdate() {
+        if (!Objects.equals(this.estadoPrestamo, this.estadoPrestamoAnterior)) {
+            if(this.idSolicitante.getDevice()!=null){
+                if(this.estadoPrestamo == 3 || this.estadoPrestamo == 6)
+                    NotificacionDevice.enviarNotificacion(this.idSolicitante.getDevice(),"FINALIZACION DE PRESTAMO",mensaje(null));
+                if(this.estadoPrestamo == 7)
+                    NotificacionDevice.enviarNotificacion(this.idSolicitante.getDevice(),"PRESTAMO RECHAZADO",mensaje(false));
+            }
+        }
+    }
+
+    /**
+     *Metodo que devuelve un mensaje para enviar a dispositivos moviles
+     *en base al cambio de estadoPrestamo del modelo
+     * @param version Destinado al estadoPrestamo 5, siendo true para bibliotecarios y false para usuarios
+     * @Type String
+     */
+    public String mensaje(Boolean version){
+
+        switch (this.estadoPrestamo){
+            case 1:{
+                return "El usuario "+this.idSolicitante.getNombres()+" "+this.idSolicitante.getApellidos()+
+                        " ha solicitado el libro "+ this.libro.getTitulo();
+            }
+            case 5:{
+                SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+                String fechaFormateada = formato.format(this.fechaMaxima);
+                if (version){
+                    return "El prestamo del libro "+this.libro.getTitulo() +" al usuario "+
+                            this.idSolicitante.getNombres()+" "+this.idSolicitante.getApellidos()+
+                            " ha superado la fecha de devolucion "+ fechaFormateada;
+                }
+                else{
+                    return "Su prestamo del libro "+this.libro.getTitulo()+
+                            " ha superado la fecha de devolucion "+ fechaFormateada;
+                }
+            }
+            case 3,6:{
+                return "Su prestamo del libro "+this.libro.getTitulo()+
+                        " ha concluido exitosamente";
+            }
+            case 7:{
+                return "Su prestamo del libro "+this.libro.getTitulo()+
+                        " ha sido rechazado";
+            }
+            default: return null;
+        }
+    }
+
 }

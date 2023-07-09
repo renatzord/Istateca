@@ -1,5 +1,7 @@
 package com.istateca.app.istateca.services;
 
+import com.istateca.app.istateca.daos.LibroRepository;
+import com.istateca.app.istateca.daos.PersonaRepository;
 import com.istateca.app.istateca.daos.PrestamoRepository;
 import com.istateca.app.istateca.daos.BaseRepository;
 import com.istateca.app.istateca.models.Prestamo;
@@ -51,8 +53,12 @@ public class PrestamoImpl extends BaseServiceImpl<Prestamo, Integer> implements 
 
     @Override
     public List<Prestamo> reporteprestamoconcarrera(Integer carreraId, Date inicio, Date fin) {
-        return repository.findByCarreraIdAndFechaFinBetween(carreraId,inicio,fin);
+        return repository.findByCarreraIdAndFechaFinBetween(carreraId, inicio, fin);
     }
 
+    @Override
+    public Integer numeroPrestamosActivos(List<Integer> estado, Integer idSolicitante) {
+        return repository.countByEstadoPrestamoInAndIdSolicitanteId(estado,idSolicitante);
+    }
 
 }
