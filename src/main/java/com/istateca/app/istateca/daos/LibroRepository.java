@@ -23,5 +23,5 @@ public interface LibroRepository extends BaseRepository<Libro,Integer>{
 
     List<Libro> findAllByTituloContainingIgnoreCaseOrSubtituloContainingIgnoreCaseOrDescripcionContainingIgnoreCaseOrAreaContainingIgnoreCaseOrEtiquetasLibroEtiquetaNombreContainingIgnoreCase(String titulo, String subtitulo, String descripcion,String area, String nombre);
 
-    boolean existsByDisponibleIsTrueAndId(Integer id);
+    boolean existsByDisponibilidadIsTrueAndId(Integer id);
 }

@@ -35,6 +35,6 @@ public class LibroImpl extends BaseServiceImpl<Libro, Integer> implements LibroS
 
     @Override
     public boolean Disponible(Integer idLibro) {
-        return repository.existsByDisponibleIsTrueAndId(idLibro);
+        return repository.existsByDisponibilidadIsTrueAndId(idLibro);
     }
 }
