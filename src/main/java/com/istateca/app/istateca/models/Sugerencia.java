@@ -33,6 +33,10 @@ public class Sugerencia implements Serializable,Actualizable<Sugerencia>{
     @JoinColumn(name = "per_id", referencedColumnName = "per_id")
     private Persona persona;
 
+    @ManyToOne
+    @JoinColumn(name = "car_id", referencedColumnName = "car_id")
+    private Carrera carrera;
+
     @Override
     public void actualizarDatos(Sugerencia entity) {
         if (entity.getDescripcion() != null) {
@@ -43,6 +47,9 @@ public class Sugerencia implements Serializable,Actualizable<Sugerencia>{
         }
         if (entity.getPersona() != null) {
             this.setPersona(entity.getPersona());
+        }
+        if (entity.getCarrera() != null) {
+            this.setCarrera(entity.getCarrera());
         }
     }
 }

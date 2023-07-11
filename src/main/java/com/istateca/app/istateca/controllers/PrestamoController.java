@@ -220,4 +220,7 @@ public class PrestamoController  extends BaseController<Prestamo> {
             return ResponseEntity.ok(mensaje);
         }
     }
+
+
+
 }

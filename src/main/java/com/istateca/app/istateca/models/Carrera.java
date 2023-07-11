@@ -32,6 +32,10 @@ public class Carrera implements Serializable,Actualizable<Carrera> {
     @OneToMany(mappedBy = "carrera", fetch = FetchType.LAZY)
     private List<Prestamo> prestamos;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "carrera", fetch = FetchType.LAZY)
+    private List<Sugerencia> sugerencias;
+
     @Override
     public void actualizarDatos(Carrera entity) {
         if (entity.getIdFenix() != null) {

@@ -11,7 +11,7 @@ public interface PersonaRepository extends BaseRepository<Persona,Integer>{
 
     Optional<Persona> findByCedula(String cedula);
 
-    Optional<Persona> findByCorreo(String correo);
+    Optional<Persona> findByCorreoAndActivoIsTrue(String correo);
 
     boolean existsByCorreo(String correo);
 

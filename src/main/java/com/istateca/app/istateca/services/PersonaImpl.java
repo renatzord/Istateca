@@ -32,7 +32,7 @@ public class PersonaImpl extends BaseServiceImpl<Persona, Integer> implements Pe
 
     @Override
     public Persona findByCorreo(String correo) {
-        Optional<Persona> persona = repository.findByCorreo(correo);
+        Optional<Persona> persona = repository.findByCorreoAndActivoIsTrue(correo);
         if(persona.isEmpty()) {
             throw new ResourceNotFoundException("Correo " + correo + ", no registrada");
         }

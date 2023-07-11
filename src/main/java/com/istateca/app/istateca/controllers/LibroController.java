@@ -99,7 +99,7 @@ public class LibroController extends BaseController<Libro> {
                 return ResponseEntity.ok().body("Acta Guardada en : "+resultado);
             }
         } else {
-            return ResponseEntity.badRequest().body("El PDF está vacía.");
+            return ResponseEntity.badRequest().body("El PDF está vacío.");
         }
     }
 
