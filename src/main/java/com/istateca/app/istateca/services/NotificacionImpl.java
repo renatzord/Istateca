@@ -21,7 +21,7 @@ public class NotificacionImpl extends BaseServiceImpl<Notificacion,Integer> impl
 
     @Override
     public List<Notificacion> notificacionesxusuario(Integer idSolicitante) {
-        return repository.findTop10ByPrestamoIdSolicitanteIdAndMensajeInOrderByVistoAscIdDesc(idSolicitante,Arrays.asList(2,3,5,6));
+        return repository.findTop10ByPrestamoIdSolicitanteIdAndMensajeInOrderByVistoAscIdDesc(idSolicitante,Arrays.asList(2,3,5,6,7));
     }
 
     @Override

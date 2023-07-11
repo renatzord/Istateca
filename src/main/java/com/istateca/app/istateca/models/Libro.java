@@ -117,6 +117,10 @@ public class Libro implements Serializable,Actualizable<Libro> {
     @JoinColumn(name = "per_id_ingreso", referencedColumnName = "per_id")
     private Persona persona;
 
+    @ManyToOne
+    @JoinColumn(name = "don_id", referencedColumnName = "don_id")
+    private Donante donante;
+
     // Bidirectional Relationships
 
     @JsonIgnore
