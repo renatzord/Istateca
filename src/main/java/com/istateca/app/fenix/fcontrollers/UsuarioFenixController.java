@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
 @RequestMapping("/usuariofenix")
@@ -65,5 +68,16 @@ public class UsuarioFenixController {
         return ResponseEntity.ok().body(service.findByDocentes());
     }
 
-
+    @GetMapping("/actualizarUsuarios")
+    public ResponseEntity<?> desactivarUsuarios() {
+        List<Persona> per = new ArrayList<>();//listado para datos en futuro
+        personaService.findAll().forEach(persona -> {
+            if(persona.getTipo()<3 && persona.getActivo()){
+                persona.setActivo(service.existeCedula(persona.getCedula()));
+                personaService.save(persona);
+                per.add(persona);
+            }
+        });
+        return ResponseEntity.ok().body("Se desactivaron "+per.size()+" usuarios");
+    }
 }

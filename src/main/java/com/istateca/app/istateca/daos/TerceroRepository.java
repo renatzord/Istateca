@@ -5,4 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TerceroRepository extends BaseRepository<Tercero,Integer>{
+
+    Tercero findByCedula(String cedula);
+
 }

@@ -48,4 +48,9 @@ public class UsuarioFenixImpl implements UsuarioFenixService{
         return usuarioFenixRepository.findByNombresAndApellidosQuery(parametro).orElse(null);
     }
 
+    @Override
+    public boolean existeCedula(String cedula) {
+        return usuarioFenixRepository.existsByCedula(cedula);
+    }
+
 }

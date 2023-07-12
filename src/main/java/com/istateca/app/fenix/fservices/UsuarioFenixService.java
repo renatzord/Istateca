@@ -10,15 +10,17 @@ import java.util.List;
 
 public interface UsuarioFenixService {
 
-    public List<UsuarioFenix> findAll();
+    List<UsuarioFenix> findAll();
 
-    public UsuarioFenix findByCedula(String cedula);
+    UsuarioFenix findByCedula(String cedula);
 
-    public UsuarioFenix findByCedulaEstudiante(String cedula);
+    UsuarioFenix findByCedulaEstudiante(String cedula);
 
-    public List<UsuarioFenix> findByDocentes();
-    public UsuarioFenix findByCorreo(String correo);
+    List<UsuarioFenix> findByDocentes();
+    UsuarioFenix findByCorreo(String correo);
 
     UsuarioFenix findByNombresAndApellidosQuery(@Param("parametro") String parametro);
+
+    boolean existeCedula(String cedula);
 
 }

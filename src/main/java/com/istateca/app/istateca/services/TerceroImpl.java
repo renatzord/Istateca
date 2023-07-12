@@ -15,4 +15,9 @@ public class TerceroImpl extends BaseServiceImpl<Tercero, Integer> implements Te
     public TerceroImpl(BaseRepository<Tercero, Integer> baseRepository) {
         super(baseRepository);
     }
+
+    @Override
+    public Tercero buscarxCedula(String cedula) {
+        return repository.findByCedula(cedula);
+    }
 }

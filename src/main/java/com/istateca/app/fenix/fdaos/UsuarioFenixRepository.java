@@ -27,4 +27,6 @@ public interface UsuarioFenixRepository extends CrudRepository<UsuarioFenix,Inte
     @Query("SELECT CASE WHEN EXISTS (SELECT 1 FROM Persona p WHERE UPPER(p.nombres || ' ' || p.apellidos) = UPPER(:parametro)) THEN true ELSE false END FROM Persona p")
     boolean existsByNombresAndApellidosQuery(@Param("parametro") String parametro);
 */
+    boolean existsByCedula(String cedula);
+
 }
