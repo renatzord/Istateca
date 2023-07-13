@@ -22,6 +22,9 @@ public class Sugerencia implements Serializable,Actualizable<Sugerencia>{
     @Column(name = "sur_descripcion")
     private String descripcion;
 
+    @Column(name = "sur_estado")
+    private Boolean estado;
+
     @Column(name = "sur_fecha")
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -50,6 +53,9 @@ public class Sugerencia implements Serializable,Actualizable<Sugerencia>{
         }
         if (entity.getCarrera() != null) {
             this.setCarrera(entity.getCarrera());
+        }
+        if (entity.getEstado() != null) {
+            this.setEstado(entity.getEstado());
         }
     }
 }
