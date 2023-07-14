@@ -214,8 +214,8 @@ public class PrestamoController  extends BaseController<Prestamo> {
             return ResponseEntity.ok("Habilitado");
         else{
             String mensaje="";
-            if(!libroDisponible) mensaje+="Libro: No disponible  ";
-            if(!personaHabilitada) mensaje+="Persona: No Califica  ";
+            if(!libroDisponible) mensaje+="Libro: No disponible;";
+            if(!personaHabilitada) mensaje+="Persona: No Califica;";
             if(conteoPrestamos>2) mensaje+="Prestamos: Ya posee 3";
             return ResponseEntity.ok(mensaje);
         }
