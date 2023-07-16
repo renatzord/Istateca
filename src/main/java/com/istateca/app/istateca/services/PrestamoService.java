@@ -27,4 +27,6 @@ public interface PrestamoService extends BaseService<Prestamo, Integer> {
     List<Prestamo> reporteprestamoconcarrera(Integer carreraId,Date inicio, Date fin);
 
     Integer numeroPrestamosActivos(List<Integer> estado,Integer idSolicitante);
+
+    List<Prestamo> prestamoActivoxCedula(String cedula);
 }

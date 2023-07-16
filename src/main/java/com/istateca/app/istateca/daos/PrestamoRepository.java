@@ -27,4 +27,6 @@ public interface PrestamoRepository extends BaseRepository<Prestamo,Integer>{
 
     Integer countByEstadoPrestamoInAndIdSolicitanteId(List<Integer> estados, Integer personaId);
 
+    List<Prestamo> findAllByIdSolicitanteCedulaAndActivoIsTrue(String cedula);
+
 }

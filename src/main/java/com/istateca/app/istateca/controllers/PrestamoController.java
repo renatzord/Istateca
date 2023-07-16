@@ -221,6 +221,14 @@ public class PrestamoController  extends BaseController<Prestamo> {
         }
     }
 
-
+    @GetMapping("/listaractivosxcedula")
+    public ResponseEntity<List<Prestamo>> prestamosActivosxCedula(@RequestParam(value = "cedula") String cedula) {
+        List<Prestamo> prestamos = service.prestamoActivoxCedula(cedula);
+        if (prestamos.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(prestamos);
+        }
+    }
 
 }

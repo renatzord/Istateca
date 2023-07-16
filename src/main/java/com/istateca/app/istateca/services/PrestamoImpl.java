@@ -61,4 +61,9 @@ public class PrestamoImpl extends BaseServiceImpl<Prestamo, Integer> implements 
         return repository.countByEstadoPrestamoInAndIdSolicitanteId(estado,idSolicitante);
     }
 
+    @Override
+    public List<Prestamo> prestamoActivoxCedula(String cedula) {
+        return repository.findAllByIdSolicitanteCedulaAndActivoIsTrue(cedula);
+    }
+
 }
