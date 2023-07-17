@@ -31,7 +31,7 @@ public class LibroController extends BaseController<Libro> {
     @Autowired
     private LibroService service;
 
-    @Value("${data_directory}"+"Libros")
+    @Value("${data_directory}"+"libros")
     private String rutageneral;
 
     @Override
@@ -75,7 +75,7 @@ public class LibroController extends BaseController<Libro> {
                 return ResponseEntity.badRequest().body(resultado);
             } else {
                 Optional<Libro> libro = service.findById(id);
-                resultado=resultado.substring(resultado.indexOf("/Archivos"));
+                resultado=resultado.substring(resultado.indexOf("/archivos"));
                 libro.get().setUrlImagen(resultado);
                 service.save(libro.get());
                 return ResponseEntity.ok().body("Libro Guardado en : "+resultado);
@@ -93,7 +93,7 @@ public class LibroController extends BaseController<Libro> {
                 return ResponseEntity.badRequest().body(resultado);
             } else {
                 Optional<Libro> libro = service.findById(id);
-                resultado=resultado.substring(resultado.indexOf("/Archivos"));
+                resultado=resultado.substring(resultado.indexOf("/archivos"));
                 libro.get().setUrlImagen(resultado);
                 service.save(libro.get());
                 return ResponseEntity.ok().body("Acta Guardada en : "+resultado);
