@@ -37,8 +37,10 @@ public class Tareas {
         LocalDate localDate = LocalDate.now();
         Date date = java.sql.Date.valueOf(localDate);
         for (Prestamo prestamo: prestamoService.prestamopasados(date)) {
-            prestamo.setEstadoPrestamo(5);
-            prestamoService.update(prestamo, prestamo.getId());
+            if (prestamo.getTipoPrestamo()!=3) {
+                prestamo.setEstadoPrestamo(5);
+                prestamoService.update(prestamo, prestamo.getId());
+            }
         }
     }
     //notificacion de retraso en la devolucion, se ejecuta al dia siguiente de la fecha maxima de devolucion a las 08:30
@@ -46,7 +48,7 @@ public class Tareas {
     public void notificacionPasados() {
         List<Persona> biblios = personaService.bibliotecarioDevice();
         for (Prestamo prestamo: prestamoService.prestamoxestadoprestamo(5)) {
-            if(restarUnDia(prestamo.getFechaMaxima().toString(),false)) {
+            if(restarUnDia(prestamo.getFechaMaxima().toString(),false) && prestamo.getTipoPrestamo()!=3) {
                 NotificacionDevice.enviarNotificacion(prestamo.getIdSolicitante().getDevice(), "DEVOLUCION ATRASADA", prestamo.mensaje(false));
                 if (biblios != null) {
                     for (Persona biblio : biblios) {
@@ -62,7 +64,7 @@ public class Tareas {
     public void notificacionPorPasarse() {
         SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
         for (Prestamo prestamo: prestamoService.prestamoxestadoprestamo(2)) {
-            if(restarUnDia(prestamo.getFechaMaxima().toString(),true)) {
+            if(restarUnDia(prestamo.getFechaMaxima().toString(),true) && prestamo.getTipoPrestamo()!=3) {
                 Notificacion notificacion=new Notificacion();
                 notificacion.setPrestamo(prestamo);
                 notificacion.setMensaje(7);

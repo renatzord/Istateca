@@ -62,7 +62,7 @@ public class SecurityConfig {
                     .requestMatchers("/tercero/**").hasAnyRole("STUD", "BLIB", "ADMIN", "DOCEN")
                     .requestMatchers("/tipo/**").hasAnyRole("STUD", "BLIB", "ADMIN", "DOCEN")
                     .requestMatchers("/sugerencia/**").hasAnyRole("STUD", "BLIB", "ADMIN", "DOCEN")
-                    .requestMatchers("/tercero_prestamo/**").hasAnyRole("STUD", "BLIB", "ADMIN", "DOCEN")
+                    .requestMatchers("/terceroprestamo/**").hasAnyRole("STUD", "BLIB", "ADMIN", "DOCEN")
                     .requestMatchers("/carrerafenix/**").hasAnyRole("STUD", "BLIB", "ADMIN", "DOCEN")
                     .requestMatchers("/usuariofenix/**").hasAnyRole("STUD", "BLIB", "ADMIN", "DOCEN")
                     .requestMatchers("/notificacion/**").hasAnyRole("STUD", "BLIB", "ADMIN", "DOCEN")

@@ -158,7 +158,7 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
     }
     @PostUpdate
     public void postUpdate() {
-        if (!Objects.equals(this.estadoPrestamo, this.estadoPrestamoAnterior)) {
+        if (!Objects.equals(this.estadoPrestamo, this.estadoPrestamoAnterior)&&this.tipoPrestamo!=3) {
             if(this.idSolicitante.getDevice()!=null){
                 if(this.estadoPrestamo == 3 || this.estadoPrestamo == 6)
                     NotificacionDevice.enviarNotificacion(this.idSolicitante.getDevice(),"FINALIZACION DE PRESTAMO",mensaje(null));
@@ -175,7 +175,6 @@ public class Prestamo implements Serializable,Actualizable<Prestamo> {
      * @Type String
      */
     public String mensaje(Boolean version){
-
         switch (this.estadoPrestamo){
             case 1:{
                 return "El usuario "+this.idSolicitante.getNombres()+" "+this.idSolicitante.getApellidos()+
