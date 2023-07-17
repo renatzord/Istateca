@@ -50,7 +50,7 @@ public class PrestamoController  extends BaseController<Prestamo> {
     @Override
     public ResponseEntity<Prestamo> crear(@RequestBody Prestamo prestamo) {
         Prestamo nuevoPrestamo = service.save(prestamo);
-        if (nuevoPrestamo != null) {
+        if (nuevoPrestamo != null && nuevoPrestamo.getTipoPrestamo()!=3) {
             List<Persona> biblios = personaService.bibliotecarioDevice();
             if(biblios!=null){
                 for (Persona biblio:biblios) {

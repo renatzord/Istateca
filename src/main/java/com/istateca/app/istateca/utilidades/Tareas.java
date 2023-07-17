@@ -37,10 +37,8 @@ public class Tareas {
         LocalDate localDate = LocalDate.now();
         Date date = java.sql.Date.valueOf(localDate);
         for (Prestamo prestamo: prestamoService.prestamopasados(date)) {
-            if (prestamo.getTipoPrestamo()!=3) {
                 prestamo.setEstadoPrestamo(5);
                 prestamoService.update(prestamo, prestamo.getId());
-            }
         }
     }
     //notificacion de retraso en la devolucion, se ejecuta al dia siguiente de la fecha maxima de devolucion a las 08:30
