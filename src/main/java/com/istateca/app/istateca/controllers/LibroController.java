@@ -3,10 +3,8 @@ package com.istateca.app.istateca.controllers;
 import com.istateca.app.istateca.models.Libro;
 import com.istateca.app.istateca.services.BaseService;
 import com.istateca.app.istateca.services.LibroService;
-//import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,7 +29,7 @@ public class LibroController extends BaseController<Libro> {
     @Autowired
     private LibroService service;
 
-    @Value("${data_directory}"+"libros")
+    @Value("${data_directory}"+"${data_libros}")
     private String rutageneral;
 
     @Override

@@ -17,6 +17,7 @@ public class ImgConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registro){
         WebMvcConfigurer.super.addResourceHandlers(registro);
         registro.addResourceHandler(carpeta).addResourceLocations("file:"+directorio);
+        System.out.println(registro+" "+carpeta+" "+directorio);
     }
 
 }

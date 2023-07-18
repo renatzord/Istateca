@@ -11,20 +11,26 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class Imagenes {
 
     //ruta: especifica la ruta, identificador: es el nombre que contendra el archivo, imagen: archivo a subir
     public static String subirArchivo(String ruta, String identificador, MultipartFile archivo) {
         try {
+            System.out.println("1: " + ruta + " " + identificador);
             String nombreArchivo = identificador + ((archivo.getOriginalFilename()).substring((archivo.getOriginalFilename()).lastIndexOf(".")));
-            //String filePath = ruta + File.separator + nombreArchivo; permite selecciona el separador correcto segun el sistema operativo
-            String filePath = ruta + "/" + nombreArchivo;
+            System.out.println("2: " + nombreArchivo);
+            String filePath = ruta + nombreArchivo;
+            System.out.println("3: " + filePath);
             File targetFile = new File(filePath);
             FileCopyUtils.copy(archivo.getInputStream(), new FileOutputStream(targetFile));
-            return filePath;
+            String rutaDeseada = Paths.get(ruta).toString().replace(File.separator, "/");
+            System.out.println("4: " + rutaDeseada);
+            return rutaDeseada;
         } catch (IOException e) {
             e.printStackTrace();
             return "Error al subir el archivo.";

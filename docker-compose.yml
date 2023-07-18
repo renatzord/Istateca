@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  istateca_app:
+    container_name: istateca_api
+    image: istateca:1.0.0
+    restart: always
+    build: .
+    ports:
+      - "10081:8080"
+    environment:
+      - DATABASE_ISTATECA_URL=jdbc:postgresql://postgres_istateca:8888/istateca
+      - DATABASE_ISTATECA_USERNAME=istateca_user
+      - DATABASE_ISTATECA_PASSWORD=yCtpDmawYwzV1i4
+      - DATABASE_FENIX_URL=jdbc:postgresql://postgres_istateca:8888/fenix_local
+      - DATABASE_FENIX_USERNAME=istateca_user
+      - DATABASE_FENIX_PASSWORD=yCtpDmawYwzV1i4
+      - DATA_DIRECTORY=/home/server/dockers/biblioteca/archivos
+      - DATA_FOLDER=/archivos/**
+      - DATA_LIBROS=/libros/
+    volumes:
+      - "/home/server/dockers/biblioteca/archivos:/archivos"
+      - "/home/server/dockers/biblioteca/archivos/libros:/archivos/libros"
